@@ -1,13 +1,11 @@
 package server_package;
 
-import common.IProductBase;
+import common.Product;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ProductBase extends UnicastRemoteObject implements IProductBase {
+public class ProductBase {
+    private List<Product> products = new ArrayList<>();
 
-    public ProductBase() throws RemoteException {
-        super();
-    }
 }
