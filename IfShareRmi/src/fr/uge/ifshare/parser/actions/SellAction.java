@@ -48,6 +48,7 @@ public class SellAction implements Action {
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
 		ifShareService.sellProduct(product, idClient);
 		client.addProductSell(product);
-		System.out.println("Votre produit est en vente, vous recevrez votre argent lorsqu'il sera acheté par une tierce personne");
+		client.addToBank(product.getPrice());
+		System.out.println("Votre produit est en vente, vous avez reçu " + product.getPrice() + "€");
 	}
 }
