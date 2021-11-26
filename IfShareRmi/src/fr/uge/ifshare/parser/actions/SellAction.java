@@ -8,7 +8,7 @@ import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
-public class SellAction implements Action<Product> {
+public class SellAction implements Action {
 	private Product product;
 	private String error = "";
 
@@ -45,8 +45,9 @@ public class SellAction implements Action<Product> {
 	}
 
 	@Override
-	public void executeAction(IIfShareService ifShareService, IfShareClient client) throws RemoteException {
-		ifShareService.sellProduct(product, client);
+	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
+		ifShareService.sellProduct(product, idClient);
+		client.addProductSell(product);
 		System.out.println("Votre produit est en vente, vous recevrez votre argent lorsqu'il sera acheté par une tierce personne");
 	}
 }

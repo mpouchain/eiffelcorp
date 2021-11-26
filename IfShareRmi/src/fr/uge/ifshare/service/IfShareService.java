@@ -30,26 +30,23 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 
 	@Override
-	public void connectToServer(IfShareClient client) throws RemoteException {
-		this.clientDB.addClient(client);
+	public long connectToServer(IfShareClient client) throws RemoteException {
+		return this.clientDB.addClient(client);
 	}
 
 	@Override
-	public void disconnectToServer(IfShareClient client) throws RemoteException {
-		this.clientDB.removeClient(client);
+	public void disconnectToServer(long idClient) throws RemoteException {
+		this.clientDB.removeClient(idClient);
 	}
 
 	@Override
-	public Product buyProduct(long productId, IfShareClient client) throws RemoteException {
+	public Product buyProduct(long productId, long client) throws RemoteException {
 		Optional<Product> optProduct = this.productDB.getProductById(productId);
 		if (optProduct.isPresent()) {
 			Product product = optProduct.get();
-			if(product.getPrice() > client.getBank()) {
-				return product;
-			}
 			this.productDB.deleteProduct(product, productId);
-			this.sellingByClientDB.removeidToClient(product);
 			this.clientWaitListDB.removeClientFromList(productId, client);
+			this.sellingByClientDB.removeidToClient(product);
 			return product;
 		} else {
 			this.clientWaitListDB.addClientToList(productId, client);
@@ -58,11 +55,11 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 
 	@Override
-	public void sellProduct(Product product, IfShareClient client) throws RemoteException {
+	public void sellProduct(Product product, Long client) throws RemoteException {
 		long id = this.productDB.addProduct(product);
 		this.clientWaitListDB.registerProductIndex(id, product.getType());
-		this.sellingByClientDB.adIdToClient(client, id);
-		List<IfShareClient> clientList = this.clientWaitListDB.getClientWaitingForProduct(product.getType());
+		this.sellingByClientDB.addIdToClient(client, id);
+		List<Long> clientList = this.clientWaitListDB.getClientWaitingForProduct(product.getType());
 		if (!clientList.isEmpty()) {
 			if (this.clientWaitListDB.clientWaitingForProduct(product.getType(), clientList.get(0))) {
 				this.buyProduct(product.getId(), clientList.get(0));

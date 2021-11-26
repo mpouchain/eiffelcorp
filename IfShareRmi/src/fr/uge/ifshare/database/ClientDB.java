@@ -1,22 +1,28 @@
 package fr.uge.ifshare.database;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.uge.ifshare.client.IfShareClient;
 
 public class ClientDB {
-	private final List<IfShareClient> listClients;
+	private final Map<Long, IfShareClient> clientMap;
+	private long indexClient = 1;
 
 	public ClientDB() {
-		this.listClients = new ArrayList<IfShareClient>();
+		this.clientMap = new HashMap<Long, IfShareClient>();
 	}
 	
-	public void addClient(IfShareClient client) {
-		this.listClients.add(client);
+	public long addClient(IfShareClient client) {
+		this.clientMap.put(indexClient, client);
+		return indexClient++;
 	}
 	
-	public void removeClient(IfShareClient client) {
-		this.listClients.remove(client);
+	public void removeClient(long id) {
+		this.clientMap.remove(id);
+	}
+	
+	public IfShareClient getClient(long id) {
+		return this.clientMap.get(id);
 	}
 }

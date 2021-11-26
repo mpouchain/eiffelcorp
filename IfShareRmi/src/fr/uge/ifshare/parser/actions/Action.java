@@ -7,10 +7,10 @@ import java.util.Optional;
 import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.service.IIfShareService;
 
-public interface Action<E> extends Serializable {	
+public interface Action extends Serializable {	
 	public void buildFromCommand(String[] command);
 	
 	public Optional<String> getError();
 	
-	public void executeAction(IIfShareService ifShareService, IfShareClient client) throws RemoteException;
+	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException;
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.parser.actions.Action;
 import fr.uge.ifshare.parser.actions.BuyAction;
+import fr.uge.ifshare.parser.actions.DisplayInfoClientAction;
 import fr.uge.ifshare.parser.actions.GetAllProductAction;
 import fr.uge.ifshare.parser.actions.GetAllProductByTypeAction;
 import fr.uge.ifshare.parser.actions.SellAction;
@@ -14,10 +15,8 @@ import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
 public class ParseCommand implements Serializable {
-	@SuppressWarnings("rawtypes")
 	private Action action;
 
-	@SuppressWarnings("rawtypes")
 	private Optional<Action> getActionFromCommandLine(String command) {
 		String[] commands = command.split(" ");
 		String act = commands[0];
@@ -31,13 +30,14 @@ public class ParseCommand implements Serializable {
 			return Optional.of(new GetAllProductAction());
 		case "@type":
 			return Optional.of(new GetAllProductByTypeAction());
+		case "@info":
+			return Optional.of(new DisplayInfoClientAction());
 		default:
 			return Optional.empty();
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	public void parseCommand(String command, IIfShareService ifShareService, IfShareClient client) throws RemoteException {
+	public void parseCommand(String command, IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
 		Optional<Action> optAction = getActionFromCommandLine(command);
 		if(optAction.isEmpty()) {
 			System.out.println("Cette commande n'est pas reconnue.\nUtilisez @help pour afficher la liste des commandes.");
@@ -47,7 +47,7 @@ public class ParseCommand implements Serializable {
 		this.action.buildFromCommand(command.split(" "));
 		var optError = this.action.getError();
 		if(optError.isEmpty()) {
-			this.action.executeAction(ifShareService, client);
+			this.action.executeAction(ifShareService, client, idClient);
 		} else {
 			System.out.println(optError.get());
 		}

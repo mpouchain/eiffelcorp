@@ -8,7 +8,7 @@ import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
-public class BuyAction implements Action<Product> {
+public class BuyAction implements Action {
 	private long id;
 	private String error = "";
 
@@ -38,16 +38,18 @@ public class BuyAction implements Action<Product> {
 	}
 
 	@Override
-	public void executeAction(IIfShareService ifShareService, IfShareClient client) throws RemoteException {
-		Product product = ifShareService.buyProduct(this.id, client);
-		if (product == null) {
-			System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
-			System.out.println("Vous êtes inscrit sur liste d'attente");
+	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
+			throws RemoteException {
+		if(client.getBank() < 1) {
+			System.out.println("Vous n'avez plus assez d'argent dans votre banque pour acheter ce produit.");
 		} else {
-			if (product.getPrice() > client.getBank()) {
-				System.out.println("Vous n'avez pas assea d'argent sur votre compte pour acheter ce produit.");
+			Product product = ifShareService.buyProduct(this.id, idClient);
+			if (product == null) {
+				System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
+				System.out.println("Vous êtes inscrit sur liste d'attente");
 			} else {
 				System.out.println("Vous avez acheté le produit " + product);
+				client.removeToBank(product.getPrice());
 			}
 		}
 	}

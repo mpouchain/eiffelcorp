@@ -13,17 +13,18 @@ public class IfShareServerClient {
 	public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException {
 		IfShareClient ifShareClient = new IfShareClient();
 		IIfShareService ifShareService = ifShareClient.getIfShareService();
+		long id = ifShareService.connectToServer(ifShareClient);
 		ParseCommand parseCommand = ifShareClient.getParseCommand();
 		
 		try (Scanner sc = new Scanner(System.in)) {
 			while (sc.hasNextLine()) {
 				String line = sc.nextLine();
-				parseCommand.parseCommand(line, ifShareService, ifShareClient);
+				parseCommand.parseCommand(line, ifShareService, ifShareClient, id);
 			}
 		} catch (Exception e) {
 			System.out.println("Trouble " + e);
 		} finally {
-			ifShareService.disconnectToServer(ifShareClient);
+			ifShareService.disconnectToServer(id);
 		}
 	}
 }

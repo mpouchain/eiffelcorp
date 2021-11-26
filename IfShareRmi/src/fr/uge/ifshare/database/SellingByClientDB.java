@@ -6,17 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.models.Product;
 
 public class SellingByClientDB {
-	private final Map<IfShareClient, List<Long>> sellBy;
+	private final Map<Long, List<Long>> sellBy;
 	
 	public SellingByClientDB() {
-		this.sellBy = new HashMap<IfShareClient, List<Long>>();
+		this.sellBy = new HashMap<Long, List<Long>>();
 	}
 
-	public void adIdToClient(IfShareClient client, long idProduct) {
+	public void addIdToClient(Long client, long idProduct) {
 		if (!this.sellBy.containsKey(client)) {
 			this.sellBy.put(client, new ArrayList<Long>());
 		}
@@ -28,14 +27,14 @@ public class SellingByClientDB {
 	
 
 	public void removeidToClient(Product product) {
-		Optional<IfShareClient> optClient = this.sellBy.entrySet().stream()
-				.filter(entry -> entry.getValue().contains(product.getId())).map(Map.Entry::getKey).findFirst();
-		if (optClient.isPresent()) {
-			IfShareClient client = optClient.get();
-			this.sellBy.merge(client, List.of(product.getId()), (list, elem) -> {
-				list.removeAll(elem);
-				return list;
-			});
-		}
+		Optional<Long> optClient = this.sellBy.entrySet().stream()
+				.filter(entry -> entry.getValue().contains(product.getId()))
+				.map(Map.Entry::getKey)
+				.findFirst();
+		Long client = optClient.get();
+		this.sellBy.merge(client, List.of(product.getId()), (list, elem) -> {
+			list.removeAll(elem);
+			return list;
+		});
 	}
 }

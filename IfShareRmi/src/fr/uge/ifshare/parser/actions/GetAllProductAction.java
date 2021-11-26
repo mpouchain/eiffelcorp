@@ -11,7 +11,7 @@ import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
-public class GetAllProductAction implements Action<Map<Product, Integer>> {
+public class GetAllProductAction implements Action {
 
 	@Override
 	public void buildFromCommand(String[] command) {
@@ -24,7 +24,7 @@ public class GetAllProductAction implements Action<Map<Product, Integer>> {
 	}
 
 	@Override
-	public void executeAction(IIfShareService ifShareService, IfShareClient client) throws RemoteException {
+	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
 		Map<Product, List<Long>> listProducts = ifShareService.getAllProduct();
 		if (listProducts.isEmpty()) {
 			System.out.println("Il n'y a aucun produit en stock actuellement");

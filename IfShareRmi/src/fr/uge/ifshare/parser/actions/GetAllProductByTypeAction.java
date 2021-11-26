@@ -11,7 +11,7 @@ import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
-public class GetAllProductByTypeAction implements Action<String> {
+public class GetAllProductByTypeAction implements Action {
 	private String type;
 	private String error = "";
 
@@ -38,7 +38,7 @@ public class GetAllProductByTypeAction implements Action<String> {
 	}
 
 	@Override
-	public void executeAction(IIfShareService ifShareService, IfShareClient client) throws RemoteException {
+	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
 		Map<Product, List<Long>> listProducts = ifShareService.getAllProductWithType(type);
 		if (listProducts.isEmpty()) {
 			System.out.println("Il n'y a aucun produit de type " + type + " actuellement");
