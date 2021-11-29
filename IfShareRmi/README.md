@@ -1,27 +1,32 @@
 # How to use IfShare RMI
 
 ## Recommandations
-
 - Use Java 11 version
 - Run Server and Clients from terminal
 
-## Run Server
-Place you in `IfShareRmi/bin` repository.
-Run command
+## Build Project RMI
+Place you in `eiffelcorp/` repository.
+Run script `build_project.sh` with command :  
 ```sh
-java fr.uge.ifshare.server.IfShareServer
+./build_project.sh
+```
+
+## Run Server
+Place you in `eiffelcorp/` repository.
+Run script `run_server.sh` with command :  
+```sh
+./run_server.sh
 ```
 
 ## Run client
-Place you in `IfShareRmi/bin` repository.
-Run command
+Place you in `eiffelcorp/` repository.
+Run script `run_client.sh` with command :  
 ```sh
-java fr.uge.ifshare.server.IfShareServerClient
+./run_client.sh
 ```
 
 ## How to interact with server
-As a client, you have a lot of commands to interact with the server.  
-You can `ask` how much products are available, search products by `type` or `sell` and `buy` products.
+As a client, you have a lot of commands to interact with the server or commands to have informations about you.  
 
 ### Available Products
 You can ask available products with this command : `@all`.  
