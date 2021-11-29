@@ -10,7 +10,7 @@ import fr.uge.ifshare.service.IIfShareService;
 public class DisplayInfoClientAction implements Action {
 	
 	@Override
-	public void buildFromCommand(String[] command) {
+	public void buildRequestFromCommand(String[] command) {
 		// Nothing
 	}
 

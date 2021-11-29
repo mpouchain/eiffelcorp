@@ -7,22 +7,37 @@ import java.util.Map;
 
 public class ClientWaitListDB {
 	private final Map<String, List<Long>> waitListMap;
-	private final Map<Long, String> indexMap;
 	
 	public ClientWaitListDB() {
 		this.waitListMap = new HashMap<String, List<Long>>();
-		this.indexMap = new HashMap<Long, String>();
 	}
 	
-	public void addClientToList(long productId, long client) {
-		String productType = this.indexMap.get(productId);
+	public void addClientToWaitList(String productType, long idClient) {
 		if (!waitListMap.containsKey(productType)) {
 			waitListMap.put(productType, new ArrayList<Long>());
 		}
-		this.waitListMap.merge(productType, List.of(client), (list, elem) -> {
+		this.waitListMap.merge(productType, List.of(idClient), (list, elem) -> {
 			list.addAll(elem);
 			return list;
 		});
+	}
+	
+	public void addClientToWaitList(ProductDB productDB, long productId, long idClient) {
+		String productType = productDB.getProductById(productId).get().getType();
+		if(productType != null) {
+			addClientToWaitList(productType, idClient);
+		}
+	}
+
+	public void removeClientFromWaitList(ProductDB productDB, long productId, long idClient) {
+		String typeProduct = productDB.getProductById(productId).get().getType();
+		System.out.println("AFTER GET BY ID");
+		if(isClientWaitingForProduct(typeProduct, idClient)) {
+			this.waitListMap.merge(typeProduct, List.of(idClient), (list, elem) -> {
+				list.removeAll(elem);
+				return list;
+			});
+		}
 	}
 	
 	public List<Long> getClientWaitingForProduct(String productType) {
@@ -33,21 +48,7 @@ public class ClientWaitListDB {
 		}
 	}
 	
-	public boolean clientWaitingForProduct(String productType, Long client) {
-		return this.waitListMap.containsKey(productType) && this.waitListMap.get(productType).contains(client);
-	}
-
-	public void removeClientFromList(long productId, Long client) {
-		String typeProduct = this.indexMap.get(productId);
-		if(this.waitListMap.containsKey(typeProduct) && this.waitListMap.get(typeProduct).contains(client)) {
-			this.waitListMap.merge(typeProduct, List.of(client), (list, elem) -> {
-				list.removeAll(elem);
-				return list;
-			});
-		}
-	}
-
-	public void registerProductIndex(long id, String type) {
-		this.indexMap.put(id, type);
+	public boolean isClientWaitingForProduct(String productType, long idClient) {
+		return this.waitListMap.containsKey(productType) && this.waitListMap.get(productType).contains(idClient);
 	}
 }

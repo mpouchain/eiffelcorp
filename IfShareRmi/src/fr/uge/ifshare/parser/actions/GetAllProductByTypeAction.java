@@ -20,7 +20,7 @@ public class GetAllProductByTypeAction implements Action {
 	}
 
 	@Override
-	public void buildFromCommand(String[] command) {
+	public void buildRequestFromCommand(String[] command) {
 		if(!count(command)) {
 			this.error = "Usage : [type of product]";
 		}

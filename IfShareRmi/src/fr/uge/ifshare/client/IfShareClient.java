@@ -1,35 +1,25 @@
 package fr.uge.ifshare.client;
 
-import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.parser.ParseCommand;
-import fr.uge.ifshare.service.IIfShareService;
 
-public class IfShareClient implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	private final IIfShareService ifShareService;
+@SuppressWarnings("serial")
+public class IfShareClient extends UnicastRemoteObject implements IIfShareClient {
 	private final ParseCommand parseCommand;
 	private final List<Product> productSell;
 	private long bank;
 	
-	public IfShareClient() throws MalformedURLException, RemoteException, NotBoundException {
-		this.ifShareService = (IIfShareService) Naming.lookup("rmi://localhost/IfShare");
+	public IfShareClient() throws RemoteException{
+		super();
 		this.parseCommand = new ParseCommand();
 		this.productSell = new ArrayList<Product>();
 		this.bank = 1_000;
-	}
-
-	public IIfShareService getIfShareService() {
-		return ifShareService;
 	}
 	
 	public ParseCommand getParseCommand() {
@@ -44,26 +34,12 @@ public class IfShareClient implements Serializable {
 		this.bank += value;
 	}
 	
-	public void removeToBank(long value) {
+	public void removeFromBank(long value) {
 		this.bank -= value;
 	}
 	
 	public void addProductSell(Product product) {
 		this.productSell.add(product);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof IfShareClient)) { // compile pas
-			return false;
-		}
-		IfShareClient client = (IfShareClient) o; // warning unchecked
-		return client.ifShareService.equals(ifShareService);
-	}
-
-	@Override
-	public int hashCode() {
-		return ifShareService.hashCode();
 	}
 	
 	@Override
@@ -78,9 +54,21 @@ public class IfShareClient implements Serializable {
 			str.append("Vous avez actuellement ces produits en vente :\n")
 			.append(this.productSell.stream()
 						.map(Product::toString)
-						.collect(Collectors.joining("\n", "\t", "")));
+						.collect(Collectors.joining("\n\t")));
 		}
 			
 		return str.toString();
+	}
+
+	@Override
+	public void notifyProductAvailable(Product product) throws RemoteException {
+		System.out.println("Le produit suivant est de nouveau disponible : " + product);
+	}
+
+	@Override
+	public void notifyProductIsSell(Product product) throws RemoteException {
+		System.out.println("Vous avez vendu ce produit : " + product);
+		this.productSell.remove(product);
+		this.addToBank(product.getPrice());
 	}
 }

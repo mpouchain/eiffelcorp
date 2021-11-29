@@ -8,7 +8,7 @@ import fr.uge.ifshare.models.Product;
 import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
-public class BuyAction implements Action {
+public class BuyByIdAction implements Action {
 	private long id;
 	private String error = "";
 
@@ -17,7 +17,7 @@ public class BuyAction implements Action {
 	}
 
 	@Override
-	public void buildFromCommand(String[] command) {
+	public void buildRequestFromCommand(String[] command) {
 		if (!count(command)) {
 			this.error = "Usage : @buy [id]";
 			return;
@@ -40,16 +40,20 @@ public class BuyAction implements Action {
 	@Override
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
 			throws RemoteException {
-		if(client.getBank() < 1) {
-			System.out.println("Vous n'avez plus assez d'argent dans votre banque pour acheter ce produit.");
+		long price = ifShareService.getPrice(this.id);
+		if (price == -1) {
+			System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
 		} else {
-			Product product = ifShareService.buyProduct(this.id, idClient);
-			if (product == null) {
-				System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
-				System.out.println("Vous êtes inscrit sur liste d'attente");
+			if (client.getBank() < price) {
+				System.out.println("Vous n'avez plus assez d'argent dans votre banque pour acheter ce produit.");
 			} else {
-				System.out.println("Vous avez acheté le produit " + product);
-				client.removeToBank(product.getPrice());
+				Product product = ifShareService.buyProductById(this.id, idClient);
+				if (product == null) {
+					System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
+				} else {
+					System.out.println("Vous avez acheté le produit " + product);
+					client.removeFromBank(product.getPrice());
+				}
 			}
 		}
 	}

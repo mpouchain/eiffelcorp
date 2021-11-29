@@ -46,9 +46,12 @@ public class ProductDB {
 	}
 
 	private Map<Product, List<Long>> getAllProduct(String type) {
-		return this.productMap.entrySet().stream().filter(entry -> !entry.getValue().isEmpty()).filter(entry -> {
-			return type == null ? true : entry.getKey().getType().equals(type);
-		}).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+		return this.productMap.entrySet().stream()
+				.filter(entry -> !entry.getValue().isEmpty())
+				.filter(entry -> { 
+					return type == null ? true : entry.getKey().getType().equals(type);
+				})
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public Map<Product, List<Long>> getAllProduct() {
@@ -60,7 +63,9 @@ public class ProductDB {
 	}
 
 	public Optional<Product> getProductById(long id) {
-		return this.productMap.entrySet().stream().filter(entry -> entry.getValue().contains(id)).map(Map.Entry::getKey)
+		return this.productMap.entrySet().stream()
+				.filter(entry -> entry.getValue().contains(id))
+				.map(Map.Entry::getKey)
 				.findFirst();
 	}
 }

@@ -26,7 +26,7 @@ public class SellingByClientDB {
 	}
 	
 
-	public void removeidToClient(Product product) {
+	public long removeidToClient(Product product) {
 		Optional<Long> optClient = this.sellBy.entrySet().stream()
 				.filter(entry -> entry.getValue().contains(product.getId()))
 				.map(Map.Entry::getKey)
@@ -36,5 +36,6 @@ public class SellingByClientDB {
 			list.removeAll(elem);
 			return list;
 		});
+		return client;
 	}
 }

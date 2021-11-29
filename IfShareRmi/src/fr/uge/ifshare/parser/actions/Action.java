@@ -8,7 +8,7 @@ import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.service.IIfShareService;
 
 public interface Action extends Serializable {	
-	public void buildFromCommand(String[] command);
+	public void buildRequestFromCommand(String[] command);
 	
 	public Optional<String> getError();
 	
