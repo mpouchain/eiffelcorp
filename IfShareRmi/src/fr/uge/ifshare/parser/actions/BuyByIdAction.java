@@ -11,6 +11,10 @@ import fr.uge.ifshare.service.IIfShareService;
 public class BuyByIdAction implements Action {
 	private long id;
 	private String error = "";
+	
+	public static String usage() {
+		return "Usage : @buy [id]";
+	}
 
 	public boolean count(String[] command) {
 		return command.length == 2;
@@ -19,7 +23,7 @@ public class BuyByIdAction implements Action {
 	@Override
 	public void buildRequestFromCommand(String[] command) {
 		if (!count(command)) {
-			this.error = "Usage : @buy [id]";
+			this.error = BuyByIdAction.usage();
 			return;
 		}
 

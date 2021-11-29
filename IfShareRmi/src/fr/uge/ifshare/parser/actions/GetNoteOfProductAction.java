@@ -12,6 +12,11 @@ public class GetNoteOfProductAction implements Action {
 	private String type;
 	private String error = "";
 	
+	
+	public static String usage() {
+		return "Usage : @note [type] [du] [produit]";
+	}
+	
 	public boolean count(String[] command) {
 		return command.length == 2;
 	}
@@ -19,7 +24,7 @@ public class GetNoteOfProductAction implements Action {
 	@Override
 	public void buildRequestFromCommand(String[] command) {
 		if (!count(command)) {
-			this.error = "Usage : @note [type] [du] [produit]";
+			this.error = GetNoteOfProductAction.usage();
 			return;
 		}
 

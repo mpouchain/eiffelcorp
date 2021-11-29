@@ -14,6 +14,10 @@ import fr.uge.ifshare.service.IIfShareService;
 public class GetAllProductByTypeAction implements Action {
 	private String type;
 	private String error = "";
+	
+	public static String usage() {
+		return "Usage : @type [type] [du] [produit]";
+	}
 
 	public boolean count(String[] command) {
 		return command.length >= 2;

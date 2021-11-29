@@ -13,6 +13,10 @@ import fr.uge.ifshare.service.IIfShareService;
 public class SellAction implements Action {
 	private Product product;
 	private String error = "";
+	
+	public static String usage() {
+		return "Usage : @sell [type] [of] [product] [price] [state] [note]";
+	}
 
 	public boolean count(String[] command) {
 		return command.length >= 5;
@@ -21,7 +25,7 @@ public class SellAction implements Action {
 	@Override
 	public void buildRequestFromCommand(String[] command) {
 		if(!count(command)) {
-			this.error = "Usage : @sell [type] [of] [product] [price] [state] [note]";
+			this.error = SellAction.usage();
 			return;
 		}
 

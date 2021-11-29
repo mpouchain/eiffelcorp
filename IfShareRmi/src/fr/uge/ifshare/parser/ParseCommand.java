@@ -12,6 +12,7 @@ import fr.uge.ifshare.parser.actions.DisplayInfoClientAction;
 import fr.uge.ifshare.parser.actions.GetAllProductAction;
 import fr.uge.ifshare.parser.actions.GetAllProductByTypeAction;
 import fr.uge.ifshare.parser.actions.GetNoteOfProductAction;
+import fr.uge.ifshare.parser.actions.HelpAction;
 import fr.uge.ifshare.parser.actions.SellAction;
 import fr.uge.ifshare.service.IIfShareService;
 
@@ -39,7 +40,7 @@ public class ParseCommand implements Serializable {
 		case "@note":
 			return Optional.of(new GetNoteOfProductAction());
 		case "@help":
-			;
+			return Optional.of(new HelpAction());
 		default:
 			return Optional.empty();
 		}

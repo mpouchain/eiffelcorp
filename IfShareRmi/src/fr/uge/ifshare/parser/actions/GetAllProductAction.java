@@ -12,6 +12,10 @@ import fr.uge.ifshare.service.IIfShareService;
 
 @SuppressWarnings("serial")
 public class GetAllProductAction implements Action {
+	
+	public static String usage() {
+		return "Usage : @all";
+	}
 
 	@Override
 	public void buildRequestFromCommand(String[] command) {

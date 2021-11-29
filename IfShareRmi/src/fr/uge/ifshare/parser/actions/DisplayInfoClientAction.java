@@ -9,6 +9,10 @@ import fr.uge.ifshare.service.IIfShareService;
 @SuppressWarnings("serial")
 public class DisplayInfoClientAction implements Action {
 	
+	public static String usage() {
+		return "Usage : @info";
+	}
+	
 	@Override
 	public void buildRequestFromCommand(String[] command) {
 		// Nothing
