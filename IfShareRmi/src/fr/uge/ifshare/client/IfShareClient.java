@@ -51,7 +51,7 @@ public class IfShareClient extends UnicastRemoteObject implements IIfShareClient
 		if(this.productSell.isEmpty()) {
 			str.append("Vous n'avez pas de produits en vente.");
 		} else {
-			str.append("Vous avez actuellement ces produits en vente :\n")
+			str.append("Vous avez actuellement ces produits en vente :\n\t")
 			.append(this.productSell.stream()
 						.map(Product::toString)
 						.collect(Collectors.joining("\n\t")));

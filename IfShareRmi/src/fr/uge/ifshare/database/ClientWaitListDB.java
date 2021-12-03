@@ -31,7 +31,6 @@ public class ClientWaitListDB {
 
 	public void removeClientFromWaitList(ProductDB productDB, long productId, long idClient) {
 		String typeProduct = productDB.getProductById(productId).get().getType();
-		System.out.println("AFTER GET BY ID");
 		if(isClientWaitingForProduct(typeProduct, idClient)) {
 			this.waitListMap.merge(typeProduct, List.of(idClient), (list, elem) -> {
 				list.removeAll(elem);
