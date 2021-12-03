@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/models/BankClient.java=UTF-8
+encoding//src/services/BankService.java=UTF-8
+encoding//src/services/BankServiceService.java=UTF-8
+encoding//src/services/BankServiceServiceLocator.java=UTF-8
+encoding//src/services/BankServiceSoapBindingStub.java=UTF-8
