@@ -5,25 +5,43 @@
 - Run Server and Clients from terminal
 
 ## Build Project RMI
-Place yourself in `eiffelcorp/` repository.
+
+### Linux
+Place yourself in `eiffelcorp/` repository.  
 Run script `build_project.sh` with command :  
 ```sh
 ./build_project.sh
 ```
 
+### Windows
+Place yourself in `eiffelcorp/` repository.  
+Double clic on `build_project.bat` script.
+
 ## Run Server
-Place yourself in `eiffelcorp/` repository.
+
+### Linux
+Place yourself in `eiffelcorp/` repository.  
 Run script `run_server.sh` with command :  
 ```sh
 ./run_server.sh
 ```
 
+### Windows
+Place yourself in `eiffelcorp/` repository.  
+Double clic on `run_server.bat` script.
+
 ## Run client
-Place yourself in `eiffelcorp/` repository.
+
+### Linux
+Place yourself in `eiffelcorp/` repository.  
 Run script `run_client.sh` with command :  
 ```sh
 ./run_client.sh
 ```
+
+### Windows
+Place yourself in `eiffelcorp/` repository.  
+Double clic on `run_client.bat` script.
 
 ## How to interact with server
 As a client, you have a lot of commands to interact with the server or commands to have informations about you.  
