@@ -1,3 +1,3 @@
 cd IfShareRmi/
 
-./build_jar.sh
+./build_jar.sh > /dev/null
