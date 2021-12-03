@@ -1,25 +1,30 @@
 package fr.uge.ifshare.database;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import fr.uge.ifshare.models.Product;
 
 public class ProductDB {
 	private final Map<Product, List<Long>> productMap;
+	private final Set<Product> productSet;
 	private long idCount;
 
 	public ProductDB() {
 		this.productMap = new LinkedHashMap<Product, List<Long>>();
+		this.productSet = new HashSet<Product>();
 		this.idCount = 1;
 	}
 
 	public long addProduct(Product product) {
 		product.setId(idCount);
+		this.productSet.add(product);
 		if (!productMap.containsKey(product)) {
 			productMap.put(product, new ArrayList<Long>());
 		}
@@ -67,5 +72,9 @@ public class ProductDB {
 				.filter(entry -> entry.getValue().contains(id))
 				.map(Map.Entry::getKey)
 				.findFirst();
+	}
+	
+	public Set<Product> getAllProductSell() {
+		return this.productSet;
 	}
 }

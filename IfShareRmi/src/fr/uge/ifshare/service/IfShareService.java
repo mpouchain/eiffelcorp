@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import fr.uge.ifshare.client.IIfShareClient;
 import fr.uge.ifshare.database.ClientDB;
@@ -130,5 +131,10 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 			return (float) notes.stream().mapToInt(i -> i).sum() / (float) notes.size();
 		}
 		return -1;
+	}
+	
+	@Override
+	public Set<Product> getAllProductAlreadySell() {
+		return this.productDB.getAllProductSell();
 	}
 }

@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import fr.uge.ifshare.client.IIfShareClient;
 import fr.uge.ifshare.models.Product;
@@ -28,4 +29,6 @@ public interface IIfShareService extends Remote {
 	public long getPrice(String productType) throws RemoteException;
 	
 	public float getNoteOfProduct(String product) throws RemoteException;
+
+	public Set<Product> getAllProductAlreadySell();
 }
