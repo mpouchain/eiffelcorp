@@ -44,7 +44,7 @@ public class BuyByIdAction implements Action {
 	@Override
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
 			throws RemoteException {
-		long price = ifShareService.getPrice(this.id);
+		double price = ifShareService.getPrice(this.id);
 		if (price == -1) {
 			System.out.println("Le produit d'ID : " + this.id + " n'est plus disponible");
 		} else {

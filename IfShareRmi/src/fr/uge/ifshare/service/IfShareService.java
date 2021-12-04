@@ -106,7 +106,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 
 	@Override
-	public long getPrice(long idProduct) throws RemoteException {
+	public double getPrice(long idProduct) throws RemoteException {
 		var optProduct = this.productDB.getProductById(idProduct);
 		if(optProduct.isPresent()) {
 			return optProduct.get().getPrice();
@@ -115,7 +115,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 
 	@Override
-	public long getPrice(String productType) throws RemoteException {
+	public double getPrice(String productType) throws RemoteException {
 		Map<Product, List<Long>> mapProducts = this.productDB.getAllProductByType(productType);
 		var opt = mapProducts.entrySet().stream().sorted(Map.Entry.comparingByKey()).findFirst();
 		if (opt.isPresent()) {

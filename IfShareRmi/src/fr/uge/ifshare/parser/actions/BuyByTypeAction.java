@@ -44,7 +44,7 @@ public class BuyByTypeAction implements Action {
 	@Override
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
 			throws RemoteException {
-		long price = ifShareService.getPrice(this.type);
+		double price = ifShareService.getPrice(this.type);
 		if (price == -1) {
 			System.out.println("Le produit : " + this.type + " n'est plus disponible");
 			System.out.println("Vous êtes inscrit sur liste d'attente");

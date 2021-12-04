@@ -13,7 +13,7 @@ import fr.uge.ifshare.parser.ParseCommand;
 public class IfShareClient extends UnicastRemoteObject implements IIfShareClient {
 	private final ParseCommand parseCommand;
 	private final List<Product> productSell;
-	private long bank;
+	private double bank;
 	
 	public IfShareClient() throws RemoteException{
 		super();
@@ -26,15 +26,15 @@ public class IfShareClient extends UnicastRemoteObject implements IIfShareClient
 		return parseCommand;
 	}
 	
-	public long getBank() {
+	public double getBank() {
 		return bank;
 	}
 	
-	public void addToBank(long value) {
+	public void addToBank(double value) {
 		this.bank += value;
 	}
 	
-	public void removeFromBank(long value) {
+	public void removeFromBank(double value) {
 		this.bank -= value;
 	}
 	

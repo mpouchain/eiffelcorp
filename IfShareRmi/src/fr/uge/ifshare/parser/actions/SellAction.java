@@ -38,11 +38,11 @@ public class SellAction implements Action {
 			typeProduct.add(command[i]);
 		}
 
-		long price;
+		double price;
 		int note;
 		int state;
 		try {
-			price = Long.parseLong(priceStr);
+			price = Double.parseDouble(priceStr);
 			note = Integer.parseInt(noteStr);
 			state = Integer.parseInt(stateSTR);
 			if(price < 1) {
@@ -58,7 +58,7 @@ public class SellAction implements Action {
 		} catch(NumberFormatException nfe) {
 			this.error = "Price must be an integer";
 		} catch(IllegalArgumentException iae) {
-			this.error = "Le prix de vente doit être prositif.";
+			this.error = "Le prix de vente doit être prositif.\nL'état de la note doivent être compris entre 0 et 5.";
 		}
 	}
 

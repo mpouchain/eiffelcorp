@@ -24,9 +24,9 @@ public interface IIfShareService extends Remote {
 	
 	public Map<Product, List<Long>> getAllProductWithType(String type) throws RemoteException;
 	
-	public long getPrice(long idProduct) throws RemoteException;
+	public double getPrice(long idProduct) throws RemoteException;
 	
-	public long getPrice(String productType) throws RemoteException;
+	public double getPrice(String productType) throws RemoteException;
 	
 	public float getNoteOfProduct(String product) throws RemoteException;
 

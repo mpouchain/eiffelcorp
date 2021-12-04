@@ -9,9 +9,9 @@ public class Product implements Serializable, Comparator<Product>, Comparable<Pr
 	private long id;
 	private final Rating rating;
 	private String type;
-	private long price;
+	private double price;
 
-	public Product(String type, long price, Rating rating) {
+	public Product(String type, double price, Rating rating) {
 		this.type = Objects.requireNonNull(type);
 		if (price < 0) {
 			throw new IllegalArgumentException("Price must be positive");
@@ -34,7 +34,7 @@ public class Product implements Serializable, Comparator<Product>, Comparable<Pr
 		this.type = this.type.replaceAll("\\s+$", "");
 	}
 
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
