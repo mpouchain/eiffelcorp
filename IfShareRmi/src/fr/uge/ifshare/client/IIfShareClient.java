@@ -8,5 +8,5 @@ import fr.uge.ifshare.models.Product;
 public interface IIfShareClient extends Remote {
 	public void notifyProductAvailable(Product product) throws RemoteException;
 	
-	public void notifyProductIsSell(Product product) throws RemoteException;
+	public void notifyProductIsSold(Product product) throws RemoteException;
 }

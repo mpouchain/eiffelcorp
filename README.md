@@ -62,13 +62,13 @@ Server will register the product in available Products.
 ### Buy Products by ID
 You can buy products with this command : `@buy [id of product]`.
 Server will inform you that you bought the product, or if it was not available.  
-If there is no available products, you're not subscibe to waitlist.  
+If there is no available product, you're not subscribed to the waitlist.  
 
 ### Buy Products by type
 You can buy products with this command : `@buytype [type] [of] [product]`.
 Server will inform you that you bought the product, or if it was not available.  
-If there is many product of this type, the cheaper will be buy.  
-If there is no available products, you are subscibe to a waitlist.  
+If there is many product of this type, the cheaper will be purchased.
+If there is no available products, you are subscribed to a waitlist.  
 
 ### Get note of a product
 You can ask the note of a product with this command : `@note [type] [of] [product]`.
@@ -77,8 +77,8 @@ Server will respond with the note of the current product.
 ## Request without the server
 
 ### Informations about client (you)
-You can ask information about you with this command : `@info`.  
-This command display your bank and the list of products you are selling.
+You can ask information about your situation with this command : `@info`.  
+This command displays your bank and the list of products you are selling.
 
 ### Help
 You can display all commands with this command : `@help`.

@@ -74,7 +74,7 @@ public class ProductDB {
 				.findFirst();
 	}
 	
-	public Set<String> getAllProductSell() {
+	public Set<String> getAllProductSold() {
 		return this.productSet;
 	}
 }

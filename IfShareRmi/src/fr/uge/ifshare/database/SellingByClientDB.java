@@ -9,17 +9,17 @@ import java.util.Optional;
 import fr.uge.ifshare.models.Product;
 
 public class SellingByClientDB {
-	private final Map<Long, List<Long>> sellBy;
+	private final Map<Long, List<Long>> soldBy;
 	
 	public SellingByClientDB() {
-		this.sellBy = new HashMap<Long, List<Long>>();
+		this.soldBy = new HashMap<Long, List<Long>>();
 	}
 
 	public void addIdToClient(Long client, long idProduct) {
-		if (!this.sellBy.containsKey(client)) {
-			this.sellBy.put(client, new ArrayList<Long>());
+		if (!this.soldBy.containsKey(client)) {
+			this.soldBy.put(client, new ArrayList<Long>());
 		}
-		this.sellBy.merge(client, List.of(idProduct), (list, elem) -> {
+		this.soldBy.merge(client, List.of(idProduct), (list, elem) -> {
 			list.addAll(elem);
 			return list;
 		});
@@ -27,12 +27,12 @@ public class SellingByClientDB {
 	
 
 	public long removeidToClient(Product product) {
-		Optional<Long> optClient = this.sellBy.entrySet().stream()
+		Optional<Long> optClient = this.soldBy.entrySet().stream()
 				.filter(entry -> entry.getValue().contains(product.getId()))
 				.map(Map.Entry::getKey)
 				.findFirst();
 		Long client = optClient.get();
-		this.sellBy.merge(client, List.of(product.getId()), (list, elem) -> {
+		this.soldBy.merge(client, List.of(product.getId()), (list, elem) -> {
 			list.removeAll(elem);
 			return list;
 		});

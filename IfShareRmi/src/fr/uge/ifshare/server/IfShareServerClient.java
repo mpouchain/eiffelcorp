@@ -32,7 +32,7 @@ public class IfShareServerClient {
 			try {
 				ifShareService.disconnectToServer(id);
 			} catch (Exception e) {
-				System.out.println("La connexion a été intérompue.");
+				System.out.println("La connexion a été interrompue.");
 			}
 			UnicastRemoteObject.unexportObject(ifShareClient, true);
 			System.out.println("\nVous êtes déconnecté du serveur.\n");

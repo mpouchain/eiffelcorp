@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 public class RatingsDB {
-	private final Map<String, List<Integer>> noteDB;
+	private final Map<String, List<Integer>> gradeDB;
 	
 	public RatingsDB() {
-		this.noteDB = new HashMap<String, List<Integer>>();
+		this.gradeDB = new HashMap<String, List<Integer>>();
 	}
 	
-	public void addNoteToType(String type, int note) {
-		if(!this.noteDB.containsKey(type)) {
-			this.noteDB.put(type, new ArrayList<Integer>());
+	public void addGradeToType(String type, int grade) {
+		if(!this.gradeDB.containsKey(type)) {
+			this.gradeDB.put(type, new ArrayList<Integer>());
 		}
-		this.noteDB.merge(type, List.of(note), (list, val) -> {
+		this.gradeDB.merge(type, List.of(grade), (list, val) -> {
 			list.addAll(val);
 			return list;
 		});
 	}
 	
-	public List<Integer> getListOfNote(String product) {
-		return this.noteDB.get(product);
+	public List<Integer> getListOfGrades(String product) {
+		return this.gradeDB.get(product);
 	}
 }

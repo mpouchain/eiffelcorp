@@ -32,7 +32,7 @@ public class IfShareServer {
 			long id3 = ifShareService.connectToServer(ifShareClient3);
 			ifShareService.sellProduct(new Product("Table de ping pong", 125, new Rating(3, 4)), id1);
 			ifShareService.sellProduct(new Product("Collier de perle", 42, new Rating(5, 5)), id1);
-			ifShareService.sellProduct(new Product("DVD Spider Man", 3, new Rating(5, 2)), id1);
+			ifShareService.sellProduct(new Product("DVD Spiderman", 3, new Rating(5, 2)), id1);
 			ifShareService.sellProduct(new Product("Chaise de jardin", 10, new Rating(4, 4)), id2);
 			ifShareService.sellProduct(new Product("Pull en laine", 17, new Rating(5, 5)), id2);
 			ifShareService.sellProduct(new Product("Chaise de jardin", 10, new Rating(3, 4)), id3);
@@ -46,7 +46,7 @@ public class IfShareServer {
 			System.out.println("\nServeur démarré.\n");
 			
 			try (Scanner sc = new Scanner(System.in)) {
-				while (sc.hasNextLine()) {	}
+				while (sc.hasNextLine()) { sc.nextLine(); }
 			}
 		} catch (ExportException e) {
 			System.out.println("Trouble: " + e);

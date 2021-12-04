@@ -52,7 +52,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 			long idSellClient = this.sellingByClient.removeidToClient(product);
 			IIfShareClient ifShareClient = this.clientDB.getClient(idSellClient);
 			if(ifShareClient != null) {
-				ifShareClient.notifyProductIsSell(product);
+				ifShareClient.notifyProductIsSold(product);
 			}
 		}
 		return optProduct;
@@ -86,7 +86,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	public void sellProduct(Product product, Long idClient) throws RemoteException {
 		product.setType();
 		long id = this.productDB.addProduct(product);
-		this.ratingDB.addNoteToType(product.getType(), product.getRating().getNote());
+		this.ratingDB.addGradeToType(product.getType(), product.getRating().getGrade());
 		this.sellingByClient.addIdToClient(idClient, id);
 		List<Long> clientList = this.clientWaitListDB.getClientWaitingForProduct(product.getType());
 		clientList.forEach(clientId -> {
@@ -128,8 +128,8 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 
 	@Override
-	public float getNoteOfProduct(String product) throws RemoteException {
-		List<Integer> notes = this.ratingDB.getListOfNote(product);
+	public float getGradeOfProduct(String product) throws RemoteException {
+		List<Integer> notes = this.ratingDB.getListOfGrades(product);
 		if(notes != null) {
 			return (float) notes.stream().mapToInt(i -> i).sum() / (float) notes.size();
 		}
@@ -137,7 +137,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 	
 	@Override
-	public Set<String> getAllProductAlreadySell() throws RemoteException{
-		return this.productDB.getAllProductSell();
+	public Set<String> getAllProductAlreadySold() throws RemoteException{
+		return this.productDB.getAllProductSold();
 	}
 }
