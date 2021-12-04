@@ -37,6 +37,11 @@ public class IfShareServer {
 			ifShareService.sellProduct(new Product("Pull en laine", 17, new Rating(5, 5)), id2);
 			ifShareService.sellProduct(new Product("Chaise de jardin", 10, new Rating(3, 4)), id3);
 			ifShareService.disconnectToServer(id1);
+			ifShareService.disconnectToServer(id2);
+			ifShareService.disconnectToServer(id3);
+			UnicastRemoteObject.unexportObject(ifShareClient1, true);
+			UnicastRemoteObject.unexportObject(ifShareClient2, true);
+			UnicastRemoteObject.unexportObject(ifShareClient3, true);
 			
 			System.out.println("\nServeur démarré.\n");
 			
@@ -46,9 +51,6 @@ public class IfShareServer {
 		} catch (ExportException e) {
 			System.out.println("Trouble: " + e);
 		} finally {
-			UnicastRemoteObject.unexportObject(ifShareClient1, true);
-			UnicastRemoteObject.unexportObject(ifShareClient2, true);
-			UnicastRemoteObject.unexportObject(ifShareClient3, true);
 			UnicastRemoteObject.unexportObject(ifShareService, true);
 			System.out.println("Le serveur est éteint.");
 		}
