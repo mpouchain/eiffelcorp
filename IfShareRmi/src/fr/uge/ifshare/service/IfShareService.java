@@ -50,7 +50,10 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 			this.clientWaitListDB.removeClientFromWaitList(this.productDB, productId, idClient);
 			this.productDB.deleteProduct(product, productId);
 			long idSellClient = this.sellingByClient.removeidToClient(product);
-			this.clientDB.getClient(idSellClient).notifyProductIsSell(product);
+			IIfShareClient ifShareClient = this.clientDB.getClient(idSellClient);
+			if(ifShareClient != null) {
+				ifShareClient.notifyProductIsSell(product);
+			}
 		}
 		return optProduct;
 	}
