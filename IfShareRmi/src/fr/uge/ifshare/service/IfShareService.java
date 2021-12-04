@@ -134,7 +134,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	}
 	
 	@Override
-	public Set<Product> getAllProductAlreadySell() {
+	public Set<Product> getAllProductAlreadySell() throws RemoteException{
 		return this.productDB.getAllProductSell();
 	}
 }

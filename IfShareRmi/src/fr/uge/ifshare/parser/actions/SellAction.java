@@ -58,7 +58,7 @@ public class SellAction implements Action {
 		} catch(NumberFormatException nfe) {
 			this.error = "Price must be an integer";
 		} catch(IllegalArgumentException iae) {
-			this.error = "Le prix de vente doit être prositif.\nL'état de la note doivent être compris entre 0 et 5.";
+			this.error = "Le prix de vente doit être prositif.\nL'état et la note du produit doivent être compris entre 0 et 5.";
 		}
 	}
 

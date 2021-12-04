@@ -30,5 +30,5 @@ public interface IIfShareService extends Remote {
 	
 	public float getNoteOfProduct(String product) throws RemoteException;
 
-	public Set<Product> getAllProductAlreadySell();
+	public Set<Product> getAllProductAlreadySell() throws RemoteException;
 }
