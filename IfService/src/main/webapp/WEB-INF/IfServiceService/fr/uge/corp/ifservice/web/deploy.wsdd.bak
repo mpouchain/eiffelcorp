@@ -31,8 +31,26 @@
         <parameter qname="pns:id" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:p" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:Product" xmlns:tns="http://common.ifservice.corp.uge.fr"/>
       </operation>
-      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
+      <operation name="getCartById" qname="operNS:getCartById" xmlns:operNS="http://web.ifservice.corp.uge.fr" returnQName="retNS:getCartByIdReturn" xmlns:retNS="http://web.ifservice.corp.uge.fr" returnType="rtns:Cart" xmlns:rtns="http://web.ifservice.corp.uge.fr" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart getCartById"/>
 
+      <typeMapping
+        xmlns:ns="http://web.ifservice.corp.uge.fr"
+        qname="ns:Cart"
+        type="java:fr.uge.corp.ifservice.web.Cart"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://web.ifservice.corp.uge.fr"
+        qname="ns:ArrayOf_tns1_Product"
+        type="java:fr.uge.corp.ifservice.common.Product[]"
+        innerType="cmp-ns:Product" xmlns:cmp-ns="http://common.ifservice.corp.uge.fr"
+        encodingStyle=""
+      />
       <typeMapping
         xmlns:ns="http://common.ifservice.corp.uge.fr"
         qname="ns:Product"

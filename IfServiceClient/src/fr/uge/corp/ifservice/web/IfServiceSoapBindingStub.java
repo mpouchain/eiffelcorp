@@ -16,7 +16,7 @@ public class IfServiceSoapBindingStub extends org.apache.axis.client.Stub implem
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[4];
+        _operations = new org.apache.axis.description.OperationDesc[5];
         _initOperationDesc1();
     }
 
@@ -61,6 +61,17 @@ public class IfServiceSoapBindingStub extends org.apache.axis.client.Stub implem
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[3] = oper;
 
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getCartById");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "Cart"));
+        oper.setReturnClass(fr.uge.corp.ifservice.web.Cart.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "getCartByIdReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[4] = oper;
+
     }
 
     public IfServiceSoapBindingStub() throws org.apache.axis.AxisFault {
@@ -102,6 +113,22 @@ public class IfServiceSoapBindingStub extends org.apache.axis.client.Stub implem
             qName = new javax.xml.namespace.QName("http://common.ifservice.corp.uge.fr", "Rating");
             cachedSerQNames.add(qName);
             cls = fr.uge.corp.ifservice.common.Rating.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "ArrayOf_tns1_Product");
+            cachedSerQNames.add(qName);
+            cls = fr.uge.corp.ifservice.common.Product[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://common.ifservice.corp.uge.fr", "Product");
+            qName2 = new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "item");
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "Cart");
+            cachedSerQNames.add(qName);
+            cls = fr.uge.corp.ifservice.web.Cart.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -289,6 +316,40 @@ public class IfServiceSoapBindingStub extends org.apache.axis.client.Stub implem
             throw (java.rmi.RemoteException)_resp;
         }
         extractAttachments(_call);
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public fr.uge.corp.ifservice.web.Cart getCartById(int id) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[4]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://web.ifservice.corp.uge.fr", "getCartById"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(id)});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (fr.uge.corp.ifservice.web.Cart) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (fr.uge.corp.ifservice.web.Cart) org.apache.axis.utils.JavaUtils.convert(_resp, fr.uge.corp.ifservice.web.Cart.class);
+            }
+        }
   } catch (org.apache.axis.AxisFault axisFaultException) {
   throw axisFaultException;
 }

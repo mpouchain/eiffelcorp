@@ -46,8 +46,34 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="addToCartResponse">
     <complexType/>
    </element>
+   <element name="getCartById">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCartByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getCartByIdReturn" type="impl:Cart"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_Product">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
+    </sequence>
+   </complexType>
+   <complexType name="Cart">
+    <sequence>
+     <element name="cart" nillable="true" type="impl:ArrayOf_tns1_Product"/>
+     <element name="cartDescription" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://common.ifservice.corp.uge.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://web.ifservice.corp.uge.fr"/>
    <complexType name="Rating">
     <sequence>
      <element name="note" type="xsd:int"/>
@@ -76,6 +102,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="addToCartResponse">
 
       <wsdl:part element="impl:addToCartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCartByIdRequest">
+
+      <wsdl:part element="impl:getCartById" name="parameters">
 
       </wsdl:part>
 
@@ -116,6 +150,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="descriptionRequest">
 
       <wsdl:part element="impl:description" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCartByIdResponse">
+
+      <wsdl:part element="impl:getCartByIdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -174,6 +216,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:addToCartResponse" name="addToCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCartById">
+
+         <wsdl:input message="impl:getCartByIdRequest" name="getCartByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCartByIdResponse" name="getCartByIdResponse">
 
        </wsdl:output>
 
@@ -250,6 +304,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addToCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCartById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCartByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCartByIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/fr/uge/corp/ifservice/common/Product.java=UTF-8
 encoding//src/fr/uge/corp/ifservice/common/Rating.java=UTF-8
+encoding//src/fr/uge/corp/ifservice/web/Cart.java=UTF-8
 encoding//src/fr/uge/corp/ifservice/web/IfService.java=UTF-8
 encoding//src/fr/uge/corp/ifservice/web/IfServiceService.java=UTF-8
 encoding//src/fr/uge/corp/ifservice/web/IfServiceServiceLocator.java=UTF-8

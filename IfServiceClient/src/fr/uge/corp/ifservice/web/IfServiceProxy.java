@@ -68,5 +68,11 @@ public class IfServiceProxy implements fr.uge.corp.ifservice.web.IfService {
     ifService.addToCart(id, p);
   }
   
+  public fr.uge.corp.ifservice.web.Cart getCartById(int id) throws java.rmi.RemoteException{
+    if (ifService == null)
+      _initIfServiceProxy();
+    return ifService.getCartById(id);
+  }
+  
   
 }

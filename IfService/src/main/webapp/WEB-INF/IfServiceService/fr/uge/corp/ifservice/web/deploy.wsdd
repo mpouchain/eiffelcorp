@@ -21,8 +21,13 @@
         <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
         <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://common.ifservice.corp.uge.fr" qname="pns:p" type="tns:Product"/>
       </operation>
-      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
+      <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" xmlns:retNS="http://web.ifservice.corp.uge.fr" xmlns:rtns="http://web.ifservice.corp.uge.fr" name="getCartById" qname="operNS:getCartById" returnQName="retNS:getCartByIdReturn" returnType="rtns:Cart" soapAction="">
+        <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart getCartById"/>
 
+      <typeMapping xmlns:ns="http://web.ifservice.corp.uge.fr" qname="ns:Cart" type="java:fr.uge.corp.ifservice.web.Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://web.ifservice.corp.uge.fr" xmlns:cmp-ns="http://common.ifservice.corp.uge.fr" qname="ns:ArrayOf_tns1_Product" type="java:fr.uge.corp.ifservice.common.Product[]" innerType="cmp-ns:Product" encodingStyle=""/>
       <typeMapping xmlns:ns="http://common.ifservice.corp.uge.fr" qname="ns:Product" type="java:fr.uge.corp.ifservice.common.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://common.ifservice.corp.uge.fr" qname="ns:Rating" type="java:fr.uge.corp.ifservice.common.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>

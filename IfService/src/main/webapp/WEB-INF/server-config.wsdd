@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -33,6 +33,7 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+ 	<ns1:parameter name="scope" value="session"/>
   <ns2:operation name="description" qname="ns1:description" returnQName="ns1:descriptionReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://web.ifservice.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
   <ns1:operation name="getAvailableProducts" qname="ns2:getAvailableProducts" returnQName="ns2:getAvailableProductsReturn" returnType="ns3:Product" soapAction="" xmlns:ns2="http://web.ifservice.corp.uge.fr" xmlns:ns3="http://common.ifservice.corp.uge.fr"/>
   <ns1:operation name="validateCart" qname="ns4:validateCart" soapAction="" xmlns:ns4="http://web.ifservice.corp.uge.fr">
@@ -42,7 +43,10 @@
    <ns1:parameter qname="ns5:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
    <ns1:parameter qname="ns5:p" type="ns6:Product" xmlns:ns6="http://common.ifservice.corp.uge.fr"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
+  <ns1:operation name="getCartById" qname="ns7:getCartById" returnQName="ns7:getCartByIdReturn" returnType="ns7:Cart" soapAction="" xmlns:ns7="http://web.ifservice.corp.uge.fr">
+   <ns1:parameter qname="ns7:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart getCartById"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="IfService"/>
   <ns1:parameter name="className" value="fr.uge.corp.ifservice.web.IfService"/>
@@ -50,8 +54,10 @@
   <ns1:parameter name="schemaQualified" value="http://common.ifservice.corp.uge.fr,http://web.ifservice.corp.uge.fr"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://web.ifservice.corp.uge.fr"/>
   <ns1:parameter name="wsdlServiceElement" value="IfServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.ifservice.common.Product" xmlns:ns7="http://common.ifservice.corp.uge.fr"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.ifservice.common.Rating" xmlns:ns8="http://common.ifservice.corp.uge.fr"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.ifservice.web.Cart" xmlns:ns8="http://web.ifservice.corp.uge.fr"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.ifservice.common.Product" xmlns:ns9="http://common.ifservice.corp.uge.fr"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.ifservice.common.Rating" xmlns:ns10="http://common.ifservice.corp.uge.fr"/>
+  <ns1:arrayMapping innerType="ns12:Product" languageSpecificType="java:fr.uge.corp.ifservice.common.Product[]" qname="ns11:ArrayOf_tns1_Product" xmlns:ns11="http://web.ifservice.corp.uge.fr" xmlns:ns12="http://common.ifservice.corp.uge.fr"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

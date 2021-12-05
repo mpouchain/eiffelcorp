@@ -80,4 +80,8 @@ public class IfService {
 		}
 		return sb.toString();			
 	}
+	
+	public Cart getCartById(int id) {
+		return carts.get(id);
+	}
 }

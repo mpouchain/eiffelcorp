@@ -23,6 +23,7 @@
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:service name="BankService" provider="java:RPC" style="wrapped" use="literal">
+ 	<ns1:parameter name="scope" value="session"/>
   <ns2:operation name="description" qname="ns1:description" returnQName="ns1:descriptionReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
   <ns1:operation name="hasFunds" qname="ns2:hasFunds" returnQName="ns2:hasFundsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:id" type="xsd:int"/>

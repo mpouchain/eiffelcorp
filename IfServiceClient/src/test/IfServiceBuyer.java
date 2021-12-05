@@ -18,15 +18,21 @@ public class IfServiceBuyer {
 		
 		System.out.println(ifService.description());
 		
-		/*		
+			
 		
 		//Scenario 1 : Client 2 (40e dans son compte ) achète le pull à 35e
 		Product p = ifService.getAvailableProducts()[2];
-		System.out.println("C2 can buy pull : " + bankService.hasFunds(1, p.getPrice()));
+		
+		
 		ifService.addToCart(2, p);
 		
 		System.out.println("Product : " + p);
 		System.out.println("Client 2 cart :");
+		System.out.println(ifService.getCartById(1).getCartDescription());
+		System.out.println(ifService.getCartById(2).getCartDescription());
+		System.out.println(ifService.getCartById(3).getCartDescription());
+
+		/*
 		System.out.println(bankService.getClientById(2).getCart());
 		
 		
