@@ -12,5 +12,4 @@ public interface IfService extends java.rmi.Remote {
     public web.models.Product[] getAvailableProducts() throws java.rmi.RemoteException;
     public void validateCart(web.models.BankClient bc) throws java.rmi.RemoteException;
     public void addToCart(web.models.BankClient bc, web.models.Product p) throws java.rmi.RemoteException;
-    public java.lang.String getRmiProducts() throws java.rmi.RemoteException;
 }

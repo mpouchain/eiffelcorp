@@ -68,11 +68,5 @@ public class IfServiceProxy implements web.services.IfService {
     ifService.addToCart(bc, p);
   }
   
-  public java.lang.String getRmiProducts() throws java.rmi.RemoteException{
-    if (ifService == null)
-      _initIfServiceProxy();
-    return ifService.getRmiProducts();
-  }
-  
   
 }

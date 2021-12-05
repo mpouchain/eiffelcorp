@@ -15,20 +15,11 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getAvailableProducts">
-    <complexType/>
-   </element>
-   <element name="getAvailableProductsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getAvailableProductsReturn" type="tns1:Product"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="validateCart">
+   <element name="hasFunds">
     <complexType>
      <sequence>
       <element name="bc" type="tns1:BankClient"/>
+      <element name="value" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -37,19 +28,48 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
     </sequence>
    </complexType>
-   <element name="validateCartResponse">
-    <complexType/>
-   </element>
-   <element name="addToCart">
+   <element name="hasFundsResponse">
     <complexType>
      <sequence>
-      <element name="bc" type="tns1:BankClient"/>
-      <element name="p" type="tns1:Product"/>
+      <element name="hasFundsReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
-   <element name="addToCartResponse">
+   <element name="removeFunds">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+      <element name="value" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeFundsResponse">
     <complexType/>
+   </element>
+   <element name="addClient">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+      <element name="value" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addClientResponse">
+    <complexType/>
+   </element>
+   <element name="getFunds">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFundsResponse">
+    <complexType>
+     <sequence>
+      <element name="getFundsReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
    </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://models.web" xmlns="http://www.w3.org/2001/XMLSchema">
@@ -77,6 +97,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
+   <wsdl:message name="getFundsRequest">
+
+      <wsdl:part element="impl:getFunds" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="descriptionResponse">
 
       <wsdl:part element="impl:descriptionResponse" name="parameters">
@@ -85,41 +113,41 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addToCartResponse">
+   <wsdl:message name="hasFundsResponse">
 
-      <wsdl:part element="impl:addToCartResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getAvailableProductsRequest">
-
-      <wsdl:part element="impl:getAvailableProducts" name="parameters">
+      <wsdl:part element="impl:hasFundsResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="validateCartResponse">
+   <wsdl:message name="addClientRequest">
 
-      <wsdl:part element="impl:validateCartResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="addToCartRequest">
-
-      <wsdl:part element="impl:addToCart" name="parameters">
+      <wsdl:part element="impl:addClient" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getAvailableProductsResponse">
+   <wsdl:message name="removeFundsResponse">
 
-      <wsdl:part element="impl:getAvailableProductsResponse" name="parameters">
+      <wsdl:part element="impl:removeFundsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addClientResponse">
+
+      <wsdl:part element="impl:addClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeFundsRequest">
+
+      <wsdl:part element="impl:removeFunds" name="parameters">
 
       </wsdl:part>
 
@@ -133,15 +161,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="validateCartRequest">
+   <wsdl:message name="getFundsResponse">
 
-      <wsdl:part element="impl:validateCart" name="parameters">
+      <wsdl:part element="impl:getFundsResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:portType name="IfService">
+   <wsdl:message name="hasFundsRequest">
+
+      <wsdl:part element="impl:hasFunds" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BankService">
 
       <wsdl:operation name="description">
 
@@ -155,37 +191,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAvailableProducts">
+      <wsdl:operation name="hasFunds">
 
-         <wsdl:input message="impl:getAvailableProductsRequest" name="getAvailableProductsRequest">
+         <wsdl:input message="impl:hasFundsRequest" name="hasFundsRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getAvailableProductsResponse" name="getAvailableProductsResponse">
+         <wsdl:output message="impl:hasFundsResponse" name="hasFundsResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="validateCart">
+      <wsdl:operation name="removeFunds">
 
-         <wsdl:input message="impl:validateCartRequest" name="validateCartRequest">
+         <wsdl:input message="impl:removeFundsRequest" name="removeFundsRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:validateCartResponse" name="validateCartResponse">
+         <wsdl:output message="impl:removeFundsResponse" name="removeFundsResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="addToCart">
+      <wsdl:operation name="addClient">
 
-         <wsdl:input message="impl:addToCartRequest" name="addToCartRequest">
+         <wsdl:input message="impl:addClientRequest" name="addClientRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:addToCartResponse" name="addToCartResponse">
+         <wsdl:output message="impl:addClientResponse" name="addClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFunds">
+
+         <wsdl:input message="impl:getFundsRequest" name="getFundsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFundsResponse" name="getFundsResponse">
 
        </wsdl:output>
 
@@ -193,7 +241,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:portType>
 
-   <wsdl:binding name="IfServiceSoapBinding" type="impl:IfService">
+   <wsdl:binding name="BankServiceSoapBinding" type="impl:BankService">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
@@ -215,17 +263,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAvailableProducts">
+      <wsdl:operation name="hasFunds">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getAvailableProductsRequest">
+         <wsdl:input name="hasFundsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getAvailableProductsResponse">
+         <wsdl:output name="hasFundsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -233,17 +281,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="validateCart">
+      <wsdl:operation name="removeFunds">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="validateCartRequest">
+         <wsdl:input name="removeFundsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="validateCartResponse">
+         <wsdl:output name="removeFundsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -251,17 +299,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addToCart">
+      <wsdl:operation name="addClient">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addToCartRequest">
+         <wsdl:input name="addClientRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addToCartResponse">
+         <wsdl:output name="addClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFunds">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFundsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFundsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -271,11 +337,11 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:binding>
 
-   <wsdl:service name="IfServiceService">
+   <wsdl:service name="BankServiceService">
 
-      <wsdl:port binding="impl:IfServiceSoapBinding" name="IfService">
+      <wsdl:port binding="impl:BankServiceSoapBinding" name="BankService">
 
-         <wsdlsoap:address location="http://localhost:8080/IfService/services/IfService"/>
+         <wsdlsoap:address location="http://localhost:8080/IfService/services/BankService"/>
 
       </wsdl:port>
 

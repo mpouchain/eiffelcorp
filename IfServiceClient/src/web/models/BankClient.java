@@ -12,7 +12,8 @@ public class BankClient  implements java.io.Serializable {
 
     private int id;
 
-    public BankClient() {
+    public BankClient(int id) {
+    	this.id = id;
     }
 
     public BankClient(
