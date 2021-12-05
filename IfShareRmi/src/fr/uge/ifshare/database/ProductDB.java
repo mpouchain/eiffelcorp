@@ -13,18 +13,18 @@ import fr.uge.ifshare.models.Product;
 
 public class ProductDB {
 	private final Map<Product, List<Long>> productMap;
-	private final Set<Product> productSet;
+	private final Set<String> productSet;
 	private long idCount;
 
 	public ProductDB() {
 		this.productMap = new LinkedHashMap<Product, List<Long>>();
-		this.productSet = new HashSet<Product>();
+		this.productSet = new HashSet<String>();
 		this.idCount = 1;
 	}
 
 	public long addProduct(Product product) {
 		product.setId(idCount);
-		this.productSet.add(product);
+		this.productSet.add(product.getType());
 		if (!productMap.containsKey(product)) {
 			productMap.put(product, new ArrayList<Long>());
 		}
@@ -74,7 +74,7 @@ public class ProductDB {
 				.findFirst();
 	}
 	
-	public Set<Product> getAllProductSell() {
+	public Set<String> getAllProductSold() {
 		return this.productSet;
 	}
 }

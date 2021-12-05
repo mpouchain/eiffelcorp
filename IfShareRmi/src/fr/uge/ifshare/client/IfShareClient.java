@@ -49,7 +49,7 @@ public class IfShareClient extends UnicastRemoteObject implements IIfShareClient
 			.append(bank)
 			.append("€\n");
 		if(this.productSell.isEmpty()) {
-			str.append("Vous n'avez pas de produits en vente.");
+			str.append("Vous n'avez pas de produit en vente.");
 		} else {
 			str.append("Vous avez actuellement ces produits en vente :\n\t")
 			.append(this.productSell.stream()
@@ -66,7 +66,7 @@ public class IfShareClient extends UnicastRemoteObject implements IIfShareClient
 	}
 
 	@Override
-	public void notifyProductIsSell(Product product) throws RemoteException {
+	public void notifyProductIsSold(Product product) throws RemoteException {
 		System.out.println("Vous avez vendu ce produit : " + product);
 		this.productSell.remove(product);
 		this.addToBank(product.getPrice());

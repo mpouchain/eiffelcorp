@@ -1,3 +1,3 @@
 cd IfShareRmi\
 
-build_jar.bat
+build_jar.bat 

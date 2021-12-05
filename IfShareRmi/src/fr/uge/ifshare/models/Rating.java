@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Rating implements Serializable {
-	private final int note;
+	private final int grade;
 	private final int state;
 	
-	public Rating(int note, int state) {
-		this.note = note;
+	public Rating(int grade, int state) {
+		this.grade = grade;
 		this.state = state;
 	}
 	
-	public int getNote() {
-		return note;
+	public int getGrade() {
+		return grade;
 	}
 	
 	public int getState() {

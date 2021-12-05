@@ -44,7 +44,7 @@ public class GetNoteOfProductAction implements Action {
 	@Override
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
 			throws RemoteException {
-		float note = ifShareService.getNoteOfProduct(type);
+		float note = ifShareService.getGradeOfProduct(type);
 		if(note < 0) {
 			System.out.println("Aucun produit de type " + type + " n'a été noté.");
 		} else {

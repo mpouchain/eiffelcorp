@@ -15,7 +15,7 @@ public class SellAction implements Action {
 	private String error = "";
 	
 	public static String usage() {
-		return "Usage : @sell [type] [of] [product] [price] [state] [note]";
+		return "Usage : @sell [type] [du] [produit] [prix] [état] [note]";
 	}
 
 	public boolean count(String[] command) {

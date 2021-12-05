@@ -42,10 +42,6 @@ public class Product implements Serializable, Comparator<Product>, Comparable<Pr
 		return id;
 	}
 
-	public void setPrice(long price) {
-		this.price = price;
-	}
-
 	public void setId(long id) {
 		this.id = id;
 	}

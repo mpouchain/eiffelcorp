@@ -27,10 +27,10 @@ public class HelpAction implements Action {
 			.append(BuyByIdAction.usage()).append(" : Acheter un produit par son id")
 										  .append(", pas d'ajout dans la liste d'attente si non présent\n")
 			.append(BuyByTypeAction.usage()).append(" : Acheter un produit par son type")
-											.append(", achat du moins chère s'il y en a plusieurs")
+											.append(", achat du moins cher s'il y en a plusieurs")
 											.append(", ajout à la liste d'attente si non présent\n")
-			.append(GetAllProductAction.usage()).append(" : Affichage de tous les produits disponible\n")
-			.append(GetAllProductByTypeAction.usage()).append(" : Affichage de tous les produits disponible filtré par le type\n")
+			.append(GetAllProductAction.usage()).append(" : Affichage de tous les produits disponibles\n")
+			.append(GetAllProductByTypeAction.usage()).append(" : Affichage de tous les produits disponibles filtrés par le type\n")
 			.append(GetNoteOfProductAction.usage()).append(" : Affichage de la note d'un produit donné\n")
 			.append(DisplayInfoClientAction.usage()).append(" : Affichage des informations du client\n");
 		System.out.println(str.toString());
