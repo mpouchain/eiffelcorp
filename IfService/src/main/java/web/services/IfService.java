@@ -31,9 +31,11 @@ public class IfService {
 	
 	public void validateCart(BankClient bc) throws RemoteException {
 		List<Product> cart = Arrays.asList(bc.getCart());
+		
 		if(cart.isEmpty()) {
 			return;
 		}
+		
 		double cartValue = 0;
 		for(Product p : cart) {
 			cartValue += p.getPrice();
@@ -41,6 +43,7 @@ public class IfService {
 		if(!bankService.hasFunds(bc.getId(), cartValue)) {
 			throw new IllegalStateException("Client " + bc.getId() + " can't validate his cart");
 		}
+		
 		bankService.removeFunds(bc.getId(), cartValue);
 		bc.emptyCart();
 	}
