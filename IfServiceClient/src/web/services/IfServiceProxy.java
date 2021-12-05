@@ -1,8 +1,8 @@
-package services;
+package web.services;
 
-public class IfServiceProxy implements services.IfService {
+public class IfServiceProxy implements web.services.IfService {
   private String _endpoint = null;
-  private services.IfService ifService = null;
+  private web.services.IfService ifService = null;
   
   public IfServiceProxy() {
     _initIfServiceProxy();
@@ -15,7 +15,7 @@ public class IfServiceProxy implements services.IfService {
   
   private void _initIfServiceProxy() {
     try {
-      ifService = (new services.IfServiceServiceLocator()).getIfService();
+      ifService = (new web.services.IfServiceServiceLocator()).getIfService();
       if (ifService != null) {
         if (_endpoint != null)
           ((javax.xml.rpc.Stub)ifService)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
@@ -38,7 +38,7 @@ public class IfServiceProxy implements services.IfService {
     
   }
   
-  public services.IfService getIfService() {
+  public web.services.IfService getIfService() {
     if (ifService == null)
       _initIfServiceProxy();
     return ifService;
@@ -50,16 +50,28 @@ public class IfServiceProxy implements services.IfService {
     return ifService.description();
   }
   
-  public long getPrice(models.Product p) throws java.rmi.RemoteException{
+  public web.models.Product[] getAvailableProducts() throws java.rmi.RemoteException{
     if (ifService == null)
       _initIfServiceProxy();
-    return ifService.getPrice(p);
+    return ifService.getAvailableProducts();
   }
   
-  public models.Product[] getProducts() throws java.rmi.RemoteException{
+  public void validateCart(web.models.BankClient bc) throws java.rmi.RemoteException{
     if (ifService == null)
       _initIfServiceProxy();
-    return ifService.getProducts();
+    ifService.validateCart(bc);
+  }
+  
+  public void addToCart(web.models.BankClient bc, web.models.Product p) throws java.rmi.RemoteException{
+    if (ifService == null)
+      _initIfServiceProxy();
+    ifService.addToCart(bc, p);
+  }
+  
+  public java.lang.String getRmiProducts() throws java.rmi.RemoteException{
+    if (ifService == null)
+      _initIfServiceProxy();
+    return ifService.getRmiProducts();
   }
   
   

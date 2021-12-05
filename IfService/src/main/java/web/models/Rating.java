@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Rating implements Serializable {
-	private final int note;
-	private final int state;
+	private int note;
+	private int state;
+	
+	public Rating()  {}
 	
 	public Rating(int note, int state) {
 		this.note = note;

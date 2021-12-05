@@ -5,10 +5,10 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package models;
+package web.models;
 
 public class BankClient  implements java.io.Serializable {
-    private double balance;
+    private web.models.Product[] cart;
 
     private int id;
 
@@ -16,30 +16,30 @@ public class BankClient  implements java.io.Serializable {
     }
 
     public BankClient(
-           double balance,
+           web.models.Product[] cart,
            int id) {
-           this.balance = balance;
+           this.cart = cart;
            this.id = id;
     }
 
 
     /**
-     * Gets the balance value for this BankClient.
+     * Gets the cart value for this BankClient.
      * 
-     * @return balance
+     * @return cart
      */
-    public double getBalance() {
-        return balance;
+    public web.models.Product[] getCart() {
+        return cart;
     }
 
 
     /**
-     * Sets the balance value for this BankClient.
+     * Sets the cart value for this BankClient.
      * 
-     * @param balance
+     * @param cart
      */
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setCart(web.models.Product[] cart) {
+        this.cart = cart;
     }
 
 
@@ -74,7 +74,9 @@ public class BankClient  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            this.balance == other.getBalance() &&
+            ((this.cart==null && other.getCart()==null) || 
+             (this.cart!=null &&
+              java.util.Arrays.equals(this.cart, other.getCart()))) &&
             this.id == other.getId();
         __equalsCalc = null;
         return _equals;
@@ -87,7 +89,17 @@ public class BankClient  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += new Double(getBalance()).hashCode();
+        if (getCart() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getCart());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getCart(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
         _hashCode += getId();
         __hashCodeCalc = false;
         return _hashCode;
@@ -98,16 +110,17 @@ public class BankClient  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(BankClient.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models", "BankClient"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models.web", "BankClient"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("balance");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "balance"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
-        elemField.setNillable(false);
+        elemField.setFieldName("cart");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "cart"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://models.web", "Product"));
+        elemField.setNillable(true);
+        elemField.setItemQName(new javax.xml.namespace.QName("http://services.web", "item"));
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "id"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "id"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

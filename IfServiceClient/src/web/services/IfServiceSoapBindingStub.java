@@ -1,13 +1,13 @@
 /**
- * BankServiceSoapBindingStub.java
+ * IfServiceSoapBindingStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package services;
+package web.services;
 
-public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub implements services.BankService {
+public class IfServiceSoapBindingStub extends org.apache.axis.client.Stub implements web.services.IfService {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -16,7 +16,7 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[4];
+        _operations = new org.apache.axis.description.OperationDesc[5];
         _initOperationDesc1();
     }
 
@@ -27,56 +27,61 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         oper.setName("description");
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         oper.setReturnClass(java.lang.String.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://services", "descriptionReturn"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://services.web", "descriptionReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("getClients");
-        oper.setReturnType(new javax.xml.namespace.QName("http://models", "BankClient"));
-        oper.setReturnClass(models.BankClient[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://services", "getClientsReturn"));
+        oper.setName("getAvailableProducts");
+        oper.setReturnType(new javax.xml.namespace.QName("http://models.web", "Product"));
+        oper.setReturnClass(web.models.Product[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://services.web", "getAvailableProductsReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("haveFunds");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.setName("validateCart");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services.web", "bc"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://models.web", "BankClient"), web.models.BankClient.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services", "value"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"), double.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
-        oper.setReturnClass(boolean.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://services", "haveFundsReturn"));
+        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("removeFunds");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.setName("addToCart");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services.web", "bc"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://models.web", "BankClient"), web.models.BankClient.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services", "value"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"), double.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://services.web", "p"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://models.web", "Product"), web.models.Product.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[3] = oper;
 
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getRmiProducts");
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        oper.setReturnClass(java.lang.String.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://services.web", "getRmiProductsReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[4] = oper;
+
     }
 
-    public BankServiceSoapBindingStub() throws org.apache.axis.AxisFault {
+    public IfServiceSoapBindingStub() throws org.apache.axis.AxisFault {
          this(null);
     }
 
-    public BankServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public IfServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
          this(service);
          super.cachedEndpoint = endpointURL;
     }
 
-    public BankServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public IfServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
         if (service == null) {
             super.service = new org.apache.axis.client.Service();
         } else {
@@ -96,12 +101,35 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("http://models", "BankClient");
+            qName = new javax.xml.namespace.QName("http://models.web", "BankClient");
             cachedSerQNames.add(qName);
-            cls = models.BankClient.class;
+            cls = web.models.BankClient.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://models.web", "Product");
+            cachedSerQNames.add(qName);
+            cls = web.models.Product.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://models.web", "Rating");
+            cachedSerQNames.add(qName);
+            cls = web.models.Rating.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://services.web", "ArrayOf_tns1_Product");
+            cachedSerQNames.add(qName);
+            cls = web.models.Product[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://models.web", "Product");
+            qName2 = new javax.xml.namespace.QName("http://services.web", "item");
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
     }
 
@@ -181,7 +209,7 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://services", "description"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://services.web", "description"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -203,7 +231,7 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
 }
     }
 
-    public models.BankClient[] getClients() throws java.rmi.RemoteException {
+    public web.models.Product[] getAvailableProducts() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -215,7 +243,7 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://services", "getClients"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://services.web", "getAvailableProducts"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -227,9 +255,9 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         else {
             extractAttachments(_call);
             try {
-                return (models.BankClient[]) _resp;
+                return (web.models.Product[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (models.BankClient[]) org.apache.axis.utils.JavaUtils.convert(_resp, models.BankClient[].class);
+                return (web.models.Product[]) org.apache.axis.utils.JavaUtils.convert(_resp, web.models.Product[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -237,7 +265,7 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
 }
     }
 
-    public boolean haveFunds(int id, double value) throws java.rmi.RemoteException {
+    public void validateCart(web.models.BankClient bc) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -249,29 +277,22 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://services", "haveFunds"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://services.web", "validateCart"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(id), new java.lang.Double(value)});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {bc});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
         }
-        else {
-            extractAttachments(_call);
-            try {
-                return ((java.lang.Boolean) _resp).booleanValue();
-            } catch (java.lang.Exception _exception) {
-                return ((java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, boolean.class)).booleanValue();
-            }
-        }
+        extractAttachments(_call);
   } catch (org.apache.axis.AxisFault axisFaultException) {
   throw axisFaultException;
 }
     }
 
-    public void removeFunds(int id, double value) throws java.rmi.RemoteException {
+    public void addToCart(web.models.BankClient bc, web.models.Product p) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -283,16 +304,50 @@ public class BankServiceSoapBindingStub extends org.apache.axis.client.Stub impl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://services", "removeFunds"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://services.web", "addToCart"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(id), new java.lang.Double(value)});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {bc, p});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
         }
         extractAttachments(_call);
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public java.lang.String getRmiProducts() throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[4]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://services.web", "getRmiProducts"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.String) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            }
+        }
   } catch (org.apache.axis.AxisFault axisFaultException) {
   throw axisFaultException;
 }

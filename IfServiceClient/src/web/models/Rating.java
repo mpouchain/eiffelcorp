@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package models;
+package web.models;
 
 public class Rating  implements java.io.Serializable {
     private int note;
@@ -98,16 +98,16 @@ public class Rating  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Rating.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models", "Rating"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models.web", "Rating"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("note");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "note"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "note"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("state");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "state"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "state"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

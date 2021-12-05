@@ -1,59 +1,59 @@
 /**
- * BankServiceServiceLocator.java
+ * IfServiceServiceLocator.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package services;
+package web.services;
 
-public class BankServiceServiceLocator extends org.apache.axis.client.Service implements services.BankServiceService {
+public class IfServiceServiceLocator extends org.apache.axis.client.Service implements web.services.IfServiceService {
 
-    public BankServiceServiceLocator() {
+    public IfServiceServiceLocator() {
     }
 
 
-    public BankServiceServiceLocator(org.apache.axis.EngineConfiguration config) {
+    public IfServiceServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public BankServiceServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public IfServiceServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for BankService
-    private java.lang.String BankService_address = "http://localhost:8080/IfService/services/BankService";
+    // Use to get a proxy class for IfService
+    private java.lang.String IfService_address = "http://localhost:8080/IfService/services/IfService";
 
-    public java.lang.String getBankServiceAddress() {
-        return BankService_address;
+    public java.lang.String getIfServiceAddress() {
+        return IfService_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String BankServiceWSDDServiceName = "BankService";
+    private java.lang.String IfServiceWSDDServiceName = "IfService";
 
-    public java.lang.String getBankServiceWSDDServiceName() {
-        return BankServiceWSDDServiceName;
+    public java.lang.String getIfServiceWSDDServiceName() {
+        return IfServiceWSDDServiceName;
     }
 
-    public void setBankServiceWSDDServiceName(java.lang.String name) {
-        BankServiceWSDDServiceName = name;
+    public void setIfServiceWSDDServiceName(java.lang.String name) {
+        IfServiceWSDDServiceName = name;
     }
 
-    public services.BankService getBankService() throws javax.xml.rpc.ServiceException {
+    public web.services.IfService getIfService() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(BankService_address);
+            endpoint = new java.net.URL(IfService_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getBankService(endpoint);
+        return getIfService(endpoint);
     }
 
-    public services.BankService getBankService(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public web.services.IfService getIfService(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            services.BankServiceSoapBindingStub _stub = new services.BankServiceSoapBindingStub(portAddress, this);
-            _stub.setPortName(getBankServiceWSDDServiceName());
+            web.services.IfServiceSoapBindingStub _stub = new web.services.IfServiceSoapBindingStub(portAddress, this);
+            _stub.setPortName(getIfServiceWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -61,8 +61,8 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
         }
     }
 
-    public void setBankServiceEndpointAddress(java.lang.String address) {
-        BankService_address = address;
+    public void setIfServiceEndpointAddress(java.lang.String address) {
+        IfService_address = address;
     }
 
     /**
@@ -72,9 +72,9 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (services.BankService.class.isAssignableFrom(serviceEndpointInterface)) {
-                services.BankServiceSoapBindingStub _stub = new services.BankServiceSoapBindingStub(new java.net.URL(BankService_address), this);
-                _stub.setPortName(getBankServiceWSDDServiceName());
+            if (web.services.IfService.class.isAssignableFrom(serviceEndpointInterface)) {
+                web.services.IfServiceSoapBindingStub _stub = new web.services.IfServiceSoapBindingStub(new java.net.URL(IfService_address), this);
+                _stub.setPortName(getIfServiceWSDDServiceName());
                 return _stub;
             }
         }
@@ -94,8 +94,8 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("BankService".equals(inputPortName)) {
-            return getBankService();
+        if ("IfService".equals(inputPortName)) {
+            return getIfService();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -105,7 +105,7 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("http://services", "BankServiceService");
+        return new javax.xml.namespace.QName("http://services.web", "IfServiceService");
     }
 
     private java.util.HashSet ports = null;
@@ -113,7 +113,7 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("http://services", "BankService"));
+            ports.add(new javax.xml.namespace.QName("http://services.web", "IfService"));
         }
         return ports.iterator();
     }
@@ -123,8 +123,8 @@ public class BankServiceServiceLocator extends org.apache.axis.client.Service im
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("BankService".equals(portName)) {
-            setBankServiceEndpointAddress(address);
+if ("IfService".equals(portName)) {
+            setIfServiceEndpointAddress(address);
         }
         else 
 { // Unknown Port Name

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IfServiceService WSDL service -->
+
+  <service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services.web"/>
+      <parameter name="wsdlServiceElement" value="IfServiceService"/>
+      <parameter name="schemaQualified" value="http://models.web,http://services.web"/>
+      <parameter name="wsdlServicePort" value="IfService"/>
+      <parameter name="className" value="web.services.IfService"/>
+      <parameter name="wsdlPortType" value="IfService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://services.web" xmlns:retNS="http://services.web" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="description" qname="operNS:description" returnQName="retNS:descriptionReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://services.web" xmlns:retNS="http://services.web" xmlns:rtns="http://models.web" name="getAvailableProducts" qname="operNS:getAvailableProducts" returnQName="retNS:getAvailableProductsReturn" returnType="rtns:Product" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://services.web" name="validateCart" qname="operNS:validateCart" soapAction="">
+        <parameter xmlns:pns="http://services.web" xmlns:tns="http://models.web" qname="pns:bc" type="tns:BankClient"/>
+      </operation>
+      <operation xmlns:operNS="http://services.web" name="addToCart" qname="operNS:addToCart" soapAction="">
+        <parameter xmlns:pns="http://services.web" xmlns:tns="http://models.web" qname="pns:bc" type="tns:BankClient"/>
+        <parameter xmlns:pns="http://services.web" xmlns:tns="http://models.web" qname="pns:p" type="tns:Product"/>
+      </operation>
+      <operation xmlns:operNS="http://services.web" xmlns:retNS="http://services.web" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getRmiProducts" qname="operNS:getRmiProducts" returnQName="retNS:getRmiProductsReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="getRmiProducts description addToCart getAvailableProducts validateCart"/>
+
+      <typeMapping xmlns:ns="http://models.web" qname="ns:Product" type="java:web.models.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://services.web" xmlns:cmp-ns="http://models.web" qname="ns:ArrayOf_tns1_Product" type="java:web.models.Product[]" innerType="cmp-ns:Product" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models.web" qname="ns:Rating" type="java:web.models.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models.web" qname="ns:BankClient" type="java:web.models.BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

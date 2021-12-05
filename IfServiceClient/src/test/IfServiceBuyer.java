@@ -1,23 +1,18 @@
 package test;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.rpc.ServiceException;
 
-import models.BankClient;
-import models.Product;
-import services.BankService;
-import services.BankServiceServiceLocator;
-import services.BankServiceSoapBindingStub;
-import services.IfService;
-import services.IfServiceServiceLocator;
+import web.models.Product;
+import web.services.IfService;
+import web.services.IfServiceServiceLocator;
 
 public class IfServiceBuyer {
 		
 	public static void main(String[] args) throws ServiceException, RemoteException {
 		IfService ifServiceservice = new IfServiceServiceLocator().getIfService();
+		/*
 		BankService bankService = new BankServiceServiceLocator().getBankService();
 		
 		((BankServiceSoapBindingStub)bankService).setMaintainSession(true);
@@ -34,5 +29,7 @@ public class IfServiceBuyer {
 		}
 		System.out.println(bankService.description());
 		System.out.println(ifServiceservice.description());
+		*/
+		System.out.println(ifServiceservice.getRmiProducts());
 	}
 }

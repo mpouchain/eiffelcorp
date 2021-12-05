@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankClient {
-	private final int id;
+	private int id;
 	private List<Product> cart = new ArrayList<>();
+	
+	
+	public BankClient() {}
 	
 	public BankClient(int id, double balance) {
 		this.id = id;

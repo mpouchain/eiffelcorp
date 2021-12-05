@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -34,11 +34,11 @@
   </ns1:operation>
   <ns1:operation name="getClients" qname="ns4:getClients" returnQName="ns4:getClientsReturn" returnType="ns5:BankClient" soapAction="" xmlns:ns4="http://service" xmlns:ns5="http://models"/>
   <ns1:parameter name="allowedMethods" value="hasFunds description getClients removeFunds"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="BankService"/>
-  <ns1:parameter name="className" value="service.BankService"/>
-  <ns1:parameter name="wsdlServicePort" value="BankService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlServicePort" value="BankService"/>
+  <ns1:parameter name="className" value="service.BankService"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
   <ns1:parameter name="wsdlServiceElement" value="BankServiceService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.BankClient" xmlns:ns6="http://models"/>
@@ -53,14 +53,29 @@
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
- <ns1:service name="IfService" provider="java:RPC" style="document" use="literal">
-  <ns1:parameter name="allowedMethods" value="*"/>
+ <ns1:service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="description" qname="ns7:description" returnQName="ns7:descriptionReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://services.web" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getAvailableProducts" qname="ns8:getAvailableProducts" returnQName="ns8:getAvailableProductsReturn" returnType="ns9:Product" soapAction="" xmlns:ns8="http://services.web" xmlns:ns9="http://models.web"/>
+  <ns1:operation name="validateCart" qname="ns10:validateCart" soapAction="" xmlns:ns10="http://services.web">
+   <ns1:parameter qname="ns10:bc" type="ns11:BankClient" xmlns:ns11="http://models.web"/>
+  </ns1:operation>
+  <ns1:operation name="addToCart" qname="ns12:addToCart" soapAction="" xmlns:ns12="http://services.web">
+   <ns1:parameter qname="ns12:bc" type="ns13:BankClient" xmlns:ns13="http://models.web"/>
+   <ns1:parameter qname="ns12:p" type="ns14:Product" xmlns:ns14="http://models.web"/>
+  </ns1:operation>
+  <ns1:operation name="getRmiProducts" qname="ns15:getRmiProducts" returnQName="ns15:getRmiProductsReturn" returnType="xsd:string" soapAction="" xmlns:ns15="http://services.web" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="getRmiProducts description addToCart getAvailableProducts validateCart"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="IfService"/>
-  <ns1:parameter name="className" value="service.IfService"/>
+  <ns1:parameter name="className" value="web.services.IfService"/>
   <ns1:parameter name="wsdlServicePort" value="IfService"/>
-  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="schemaQualified" value="http://models.web,http://services.web"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://services.web"/>
   <ns1:parameter name="wsdlServiceElement" value="IfServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:web.models.Product" xmlns:ns16="http://models.web"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:web.models.Rating" xmlns:ns17="http://models.web"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:web.models.BankClient" xmlns:ns18="http://models.web"/>
+  <ns1:arrayMapping innerType="ns20:Product" languageSpecificType="java:web.models.Product[]" qname="ns19:ArrayOf_tns1_Product" xmlns:ns19="http://services.web" xmlns:ns20="http://models.web"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

@@ -5,14 +5,14 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package models;
+package web.models;
 
 public class Product  implements java.io.Serializable {
     private long id;
 
     private double price;
 
-    private models.Rating rating;
+    private web.models.Rating rating;
 
     private java.lang.String type;
 
@@ -22,7 +22,7 @@ public class Product  implements java.io.Serializable {
     public Product(
            long id,
            double price,
-           models.Rating rating,
+           web.models.Rating rating,
            java.lang.String type) {
            this.id = id;
            this.price = price;
@@ -76,7 +76,7 @@ public class Product  implements java.io.Serializable {
      * 
      * @return rating
      */
-    public models.Rating getRating() {
+    public web.models.Rating getRating() {
         return rating;
     }
 
@@ -86,7 +86,7 @@ public class Product  implements java.io.Serializable {
      * 
      * @param rating
      */
-    public void setRating(models.Rating rating) {
+    public void setRating(web.models.Rating rating) {
         this.rating = rating;
     }
 
@@ -158,28 +158,28 @@ public class Product  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Product.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models", "Product"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models.web", "Product"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "id"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "id"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("price");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "price"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "price"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("rating");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "rating"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://models", "Rating"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "rating"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://models.web", "Rating"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("type");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "type"));
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models.web", "type"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);

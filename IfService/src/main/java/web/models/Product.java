@@ -6,9 +6,11 @@ import java.util.Objects;
 
 public class Product implements Serializable, Comparator<Product>, Comparable<Product>{
 	private long id;
-	private final Rating rating;
+	private Rating rating;
 	private String type;
 	private double price;
+	
+	public Product() {}
 	
 	public Product(String type, double price, Rating rating) {
 		this.type = Objects.requireNonNull(type);

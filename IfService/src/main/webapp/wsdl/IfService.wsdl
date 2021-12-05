@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services.web" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.web" xmlns:intf="http://services.web" xmlns:tns1="http://models.web" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://services.web" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://models.web"/>
+   <element name="description">
+    <complexType/>
+   </element>
+   <element name="descriptionResponse">
+    <complexType>
+     <sequence>
+      <element name="descriptionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAvailableProducts">
+    <complexType/>
+   </element>
+   <element name="getAvailableProductsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAvailableProductsReturn" type="tns1:Product"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validateCart">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_Product">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
+    </sequence>
+   </complexType>
+   <element name="validateCartResponse">
+    <complexType/>
+   </element>
+   <element name="addToCart">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+      <element name="p" type="tns1:Product"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addToCartResponse">
+    <complexType/>
+   </element>
+   <element name="getRmiProducts">
+    <complexType/>
+   </element>
+   <element name="getRmiProductsResponse">
+    <complexType>
+     <sequence>
+      <element name="getRmiProductsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://models.web" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://services.web"/>
+   <complexType name="Rating">
+    <sequence>
+     <element name="note" type="xsd:int"/>
+     <element name="state" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="Product">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="price" type="xsd:double"/>
+     <element name="rating" nillable="true" type="tns1:Rating"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="BankClient">
+    <sequence>
+     <element name="cart" nillable="true" type="impl:ArrayOf_tns1_Product"/>
+     <element name="id" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="descriptionResponse">
+
+      <wsdl:part element="impl:descriptionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addToCartResponse">
+
+      <wsdl:part element="impl:addToCartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailableProductsRequest">
+
+      <wsdl:part element="impl:getAvailableProducts" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateCartResponse">
+
+      <wsdl:part element="impl:validateCartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addToCartRequest">
+
+      <wsdl:part element="impl:addToCart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRmiProductsResponse">
+
+      <wsdl:part element="impl:getRmiProductsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailableProductsResponse">
+
+      <wsdl:part element="impl:getAvailableProductsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRmiProductsRequest">
+
+      <wsdl:part element="impl:getRmiProducts" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="descriptionRequest">
+
+      <wsdl:part element="impl:description" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validateCartRequest">
+
+      <wsdl:part element="impl:validateCart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="IfService">
+
+      <wsdl:operation name="description">
+
+         <wsdl:input message="impl:descriptionRequest" name="descriptionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:descriptionResponse" name="descriptionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAvailableProducts">
+
+         <wsdl:input message="impl:getAvailableProductsRequest" name="getAvailableProductsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAvailableProductsResponse" name="getAvailableProductsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validateCart">
+
+         <wsdl:input message="impl:validateCartRequest" name="validateCartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validateCartResponse" name="validateCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addToCart">
+
+         <wsdl:input message="impl:addToCartRequest" name="addToCartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addToCartResponse" name="addToCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRmiProducts">
+
+         <wsdl:input message="impl:getRmiProductsRequest" name="getRmiProductsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getRmiProductsResponse" name="getRmiProductsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="IfServiceSoapBinding" type="impl:IfService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="description">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="descriptionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="descriptionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAvailableProducts">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAvailableProductsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAvailableProductsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validateCart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validateCartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validateCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addToCart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addToCartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addToCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRmiProducts">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRmiProductsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRmiProductsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="IfServiceService">
+
+      <wsdl:port binding="impl:IfServiceSoapBinding" name="IfService">
+
+         <wsdlsoap:address location="http://localhost:8080/IfService/services/IfService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

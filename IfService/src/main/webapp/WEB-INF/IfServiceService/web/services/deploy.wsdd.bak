@@ -1,0 +1,70 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IfServiceService WSDL service -->
+
+  <service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services.web"/>
+      <parameter name="wsdlServiceElement" value="IfServiceService"/>
+      <parameter name="schemaQualified" value="http://models.web,http://services.web"/>
+      <parameter name="wsdlServicePort" value="IfService"/>
+      <parameter name="className" value="web.services.IfServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="IfService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="description" qname="operNS:description" xmlns:operNS="http://services.web" returnQName="retNS:descriptionReturn" xmlns:retNS="http://services.web" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getAvailableProducts" qname="operNS:getAvailableProducts" xmlns:operNS="http://services.web" returnQName="retNS:getAvailableProductsReturn" xmlns:retNS="http://services.web" returnType="rtns:Product" xmlns:rtns="http://models.web" soapAction="" >
+      </operation>
+      <operation name="validateCart" qname="operNS:validateCart" xmlns:operNS="http://services.web" soapAction="" >
+        <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
+      </operation>
+      <operation name="addToCart" qname="operNS:addToCart" xmlns:operNS="http://services.web" soapAction="" >
+        <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
+        <parameter qname="pns:p" xmlns:pns="http://services.web" type="tns:Product" xmlns:tns="http://models.web"/>
+      </operation>
+      <operation name="getRmiProducts" qname="operNS:getRmiProducts" xmlns:operNS="http://services.web" returnQName="retNS:getRmiProductsReturn" xmlns:retNS="http://services.web" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getRmiProducts description addToCart getAvailableProducts validateCart"/>
+
+      <typeMapping
+        xmlns:ns="http://models.web"
+        qname="ns:Product"
+        type="java:web.models.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://services.web"
+        qname="ns:ArrayOf_tns1_Product"
+        type="java:web.models.Product[]"
+        innerType="cmp-ns:Product" xmlns:cmp-ns="http://models.web"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://models.web"
+        qname="ns:Rating"
+        type="java:web.models.Rating"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://models.web"
+        qname="ns:BankClient"
+        type="java:web.models.BankClient"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
