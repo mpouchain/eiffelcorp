@@ -10,12 +10,16 @@ package models;
 public class BankClient  implements java.io.Serializable {
     private double balance;
 
+    private int id;
+
     public BankClient() {
     }
 
     public BankClient(
-           double balance) {
+           double balance,
+           int id) {
            this.balance = balance;
+           this.id = id;
     }
 
 
@@ -38,6 +42,26 @@ public class BankClient  implements java.io.Serializable {
         this.balance = balance;
     }
 
+
+    /**
+     * Gets the id value for this BankClient.
+     * 
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+
+    /**
+     * Sets the id value for this BankClient.
+     * 
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof BankClient)) return false;
@@ -50,7 +74,8 @@ public class BankClient  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            this.balance == other.getBalance();
+            this.balance == other.getBalance() &&
+            this.id == other.getId();
         __equalsCalc = null;
         return _equals;
     }
@@ -63,6 +88,7 @@ public class BankClient  implements java.io.Serializable {
         __hashCodeCalc = true;
         int _hashCode = 1;
         _hashCode += new Double(getBalance()).hashCode();
+        _hashCode += getId();
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -77,6 +103,12 @@ public class BankClient  implements java.io.Serializable {
         elemField.setFieldName("balance");
         elemField.setXmlName(new javax.xml.namespace.QName("http://models", "balance"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("id");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "id"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }

@@ -1,4 +1,4 @@
-package models;
+package web.models;
 
 import java.io.Serializable;
 

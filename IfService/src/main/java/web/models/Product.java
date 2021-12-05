@@ -1,17 +1,16 @@
-package models;
+package web.models;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
-@SuppressWarnings("serial")
-public class Product implements Serializable, Comparator<Product>, Comparable<Product> {
+public class Product implements Serializable, Comparator<Product>, Comparable<Product>{
 	private long id;
 	private final Rating rating;
 	private String type;
-	private long price;
-
-	public Product(String type, long price, Rating rating) {
+	private double price;
+	
+	public Product(String type, double price, Rating rating) {
 		this.type = Objects.requireNonNull(type);
 		if (price < 0) {
 			throw new IllegalArgumentException("Price must be positive");
@@ -34,7 +33,7 @@ public class Product implements Serializable, Comparator<Product>, Comparable<Pr
 		this.type = this.type.replaceAll("\\s+$", "");
 	}
 
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -78,4 +77,6 @@ public class Product implements Serializable, Comparator<Product>, Comparable<Pr
 	public int compare(Product arg0, Product arg1) {
 		return (int) (arg0.price - arg1.price);
 	}
+
+
 }

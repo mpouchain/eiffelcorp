@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IfServiceService WSDL service -->
+
+  <service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services"/>
+      <parameter name="wsdlServiceElement" value="IfServiceService"/>
+      <parameter name="schemaQualified" value="http://models,http://services"/>
+      <parameter name="wsdlServicePort" value="IfService"/>
+      <parameter name="className" value="services.IfService"/>
+      <parameter name="wsdlPortType" value="IfService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="description" qname="operNS:description" returnQName="retNS:descriptionReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPrice" qname="operNS:getPrice" returnQName="retNS:getPriceReturn" returnType="rtns:long" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://models" qname="pns:p" type="tns:Product"/>
+      </operation>
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://models" name="getProducts" qname="operNS:getProducts" returnQName="retNS:getProductsReturn" returnType="rtns:Product" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="description getProducts getPrice"/>
+
+      <typeMapping xmlns:ns="http://models" qname="ns:Product" type="java:models.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models" qname="ns:Rating" type="java:models.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

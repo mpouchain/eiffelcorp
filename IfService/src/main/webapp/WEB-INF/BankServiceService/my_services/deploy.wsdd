@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BankServiceService WSDL service -->
+
+  <service name="BankService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://my_services"/>
+      <parameter name="wsdlServiceElement" value="BankServiceService"/>
+      <parameter name="schemaQualified" value="http://my_services,http://models"/>
+      <parameter name="wsdlServicePort" value="BankService"/>
+      <parameter name="className" value="my_services.BankService"/>
+      <parameter name="wsdlPortType" value="BankService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://my_services" xmlns:retNS="http://my_services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="description" qname="operNS:description" returnQName="retNS:descriptionReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://my_services" xmlns:retNS="http://my_services" xmlns:rtns="http://models" name="getClients" qname="operNS:getClients" returnQName="retNS:getClientsReturn" returnType="rtns:BankClient" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://my_services" xmlns:retNS="http://my_services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="haveFunds" qname="operNS:haveFunds" returnQName="retNS:haveFundsReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://my_services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://my_services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://my_services" name="removeFunds" qname="operNS:removeFunds" soapAction="">
+        <parameter xmlns:pns="http://my_services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://my_services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
+      </operation>
+      <parameter name="allowedMethods" value="description getClients removeFunds haveFunds"/>
+
+      <arrayMapping xmlns:ns="http://my_services" xmlns:cmp-ns="http://models" qname="ns:ArrayOf_tns1_Product" type="java:models.Product[]" innerType="cmp-ns:Product" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models" qname="ns:BankClient" type="java:models.BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models" qname="ns:Product" type="java:models.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://models" qname="ns:Rating" type="java:models.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

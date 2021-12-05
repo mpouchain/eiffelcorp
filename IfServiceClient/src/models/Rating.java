@@ -1,5 +1,5 @@
 /**
- * BankClient.java
+ * Rating.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,41 +7,65 @@
 
 package models;
 
-public class BankClient  implements java.io.Serializable {
-    private double balance;
+public class Rating  implements java.io.Serializable {
+    private int note;
 
-    public BankClient() {
+    private int state;
+
+    public Rating() {
     }
 
-    public BankClient(
-           double balance) {
-           this.balance = balance;
-    }
-
-
-    /**
-     * Gets the balance value for this BankClient.
-     * 
-     * @return balance
-     */
-    public double getBalance() {
-        return balance;
+    public Rating(
+           int note,
+           int state) {
+           this.note = note;
+           this.state = state;
     }
 
 
     /**
-     * Sets the balance value for this BankClient.
+     * Gets the note value for this Rating.
      * 
-     * @param balance
+     * @return note
      */
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public int getNote() {
+        return note;
+    }
+
+
+    /**
+     * Sets the note value for this Rating.
+     * 
+     * @param note
+     */
+    public void setNote(int note) {
+        this.note = note;
+    }
+
+
+    /**
+     * Gets the state value for this Rating.
+     * 
+     * @return state
+     */
+    public int getState() {
+        return state;
+    }
+
+
+    /**
+     * Sets the state value for this Rating.
+     * 
+     * @param state
+     */
+    public void setState(int state) {
+        this.state = state;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof BankClient)) return false;
-        BankClient other = (BankClient) obj;
+        if (!(obj instanceof Rating)) return false;
+        Rating other = (Rating) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -50,7 +74,8 @@ public class BankClient  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            this.balance == other.getBalance();
+            this.note == other.getNote() &&
+            this.state == other.getState();
         __equalsCalc = null;
         return _equals;
     }
@@ -62,21 +87,28 @@ public class BankClient  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += new Double(getBalance()).hashCode();
+        _hashCode += getNote();
+        _hashCode += getState();
         __hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(BankClient.class, true);
+        new org.apache.axis.description.TypeDesc(Rating.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models", "BankClient"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://models", "Rating"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("balance");
-        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "balance"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setFieldName("note");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "note"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("state");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://models", "state"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }
