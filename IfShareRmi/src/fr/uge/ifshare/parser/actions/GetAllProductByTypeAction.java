@@ -3,7 +3,6 @@ package fr.uge.ifshare.parser.actions;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fr.uge.ifshare.client.IfShareClient;
@@ -37,8 +36,8 @@ public class GetAllProductByTypeAction implements Action {
 	}
 
 	@Override
-	public Optional<String> getError() {
-		return this.error != "" ? Optional.of(this.error) : Optional.empty();
+	public String getError() {
+		return this.error;
 	}
 
 	@Override

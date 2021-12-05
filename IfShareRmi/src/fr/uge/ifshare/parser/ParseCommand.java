@@ -2,7 +2,6 @@ package fr.uge.ifshare.parser;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Optional;
 
 import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.parser.actions.Action;
@@ -20,45 +19,44 @@ import fr.uge.ifshare.service.IIfShareService;
 public class ParseCommand implements Serializable {
 	private Action action;
 
-	private Optional<Action> getActionFromCommandLine(String command) {
+	private Action getActionFromCommandLine(String command) {
 		String[] commands = command.split(" ");
 		String act = commands[0];
 		
 		switch (act) {
 		case "@buy":
-			return Optional.of(new BuyByIdAction());
+			return new BuyByIdAction();
 		case "@buytype":
-			return Optional.of(new BuyByTypeAction());
+			return new BuyByTypeAction();
 		case "@sell":
-			return Optional.of(new SellAction());
+			return new SellAction();
 		case "@all":
-			return Optional.of(new GetAllProductAction());
+			return new GetAllProductAction();
 		case "@type":
-			return Optional.of(new GetAllProductByTypeAction());
+			return new GetAllProductByTypeAction();
 		case "@info":
-			return Optional.of(new DisplayInfoClientAction());
+			return new DisplayInfoClientAction();
 		case "@note":
-			return Optional.of(new GetNoteOfProductAction());
+			return new GetNoteOfProductAction();
 		case "@help":
-			return Optional.of(new HelpAction());
+			return new HelpAction();
 		default:
-			return Optional.empty();
+			return null;
 		}
 	}
 	
 	public void parseCommand(String command, IIfShareService ifShareService, IfShareClient client, long idClient) throws RemoteException {
-		Optional<Action> optAction = getActionFromCommandLine(command);
-		if(optAction.isEmpty()) {
+		this.action = getActionFromCommandLine(command);
+		if(this.action == null) {
 			System.out.println("Cette commande n'est pas reconnue.\nUtilisez @help pour afficher la liste des commandes.");
 			return;
 		}
-		this.action = optAction.get();
 		this.action.buildRequestFromCommand(command.split(" "));
-		var optError = this.action.getError();
-		if(optError.isEmpty()) {
+		String error = this.action.getError();
+		if(error.equals("")) {
 			this.action.executeAction(ifShareService, client, idClient);
 		} else {
-			System.out.println(optError.get());
+			System.out.println(error);
 		}
 	}
 }

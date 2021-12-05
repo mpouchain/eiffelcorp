@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
@@ -70,9 +71,9 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	@Override
 	public Product buyProductByType(String productType, long idClient) throws RemoteException {
 		Map<Product, List<Long>> mapProducts = this.productDB.getAllProductByType(productType);
-		var opt = mapProducts.entrySet().stream().sorted(Map.Entry.comparingByKey()).findFirst();
+		Optional<Entry<Product, List<Long>>> opt = mapProducts.entrySet().stream().sorted(Map.Entry.comparingByKey()).findFirst();
 		if (opt.isPresent()) {
-			var optProduct = buyProduct(opt.get().getValue().get(0), idClient);
+			Optional<Product> optProduct = buyProduct(opt.get().getValue().get(0), idClient);
 			if (optProduct.isPresent()) {
 				return optProduct.get();
 			}
@@ -110,7 +111,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 
 	@Override
 	public double getPrice(long idProduct) throws RemoteException {
-		var optProduct = this.productDB.getProductById(idProduct);
+		Optional<Product> optProduct = this.productDB.getProductById(idProduct);
 		if(optProduct.isPresent()) {
 			return optProduct.get().getPrice();
 		}
@@ -120,7 +121,7 @@ public class IfShareService extends UnicastRemoteObject implements IIfShareServi
 	@Override
 	public double getPrice(String productType) throws RemoteException {
 		Map<Product, List<Long>> mapProducts = this.productDB.getAllProductByType(productType);
-		var opt = mapProducts.entrySet().stream().sorted(Map.Entry.comparingByKey()).findFirst();
+		Optional<Entry<Product, List<Long>>> opt = mapProducts.entrySet().stream().sorted(Map.Entry.comparingByKey()).findFirst();
 		if (opt.isPresent()) {
 			return getPrice(opt.get().getValue().get(0));
 		}

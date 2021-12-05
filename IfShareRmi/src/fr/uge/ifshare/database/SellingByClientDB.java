@@ -1,6 +1,7 @@
 package fr.uge.ifshare.database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class SellingByClientDB {
 		if (!this.soldBy.containsKey(client)) {
 			this.soldBy.put(client, new ArrayList<Long>());
 		}
-		this.soldBy.merge(client, List.of(idProduct), (list, elem) -> {
+		this.soldBy.merge(client, Arrays.asList(idProduct), (list, elem) -> {
 			list.addAll(elem);
 			return list;
 		});
@@ -32,7 +33,7 @@ public class SellingByClientDB {
 				.map(Map.Entry::getKey)
 				.findFirst();
 		Long client = optClient.get();
-		this.soldBy.merge(client, List.of(product.getId()), (list, elem) -> {
+		this.soldBy.merge(client, Arrays.asList(product.getId()), (list, elem) -> {
 			list.removeAll(elem);
 			return list;
 		});

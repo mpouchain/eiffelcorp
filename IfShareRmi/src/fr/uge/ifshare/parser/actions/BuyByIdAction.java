@@ -1,7 +1,6 @@
 package fr.uge.ifshare.parser.actions;
 
 import java.rmi.RemoteException;
-import java.util.Optional;
 
 import fr.uge.ifshare.client.IfShareClient;
 import fr.uge.ifshare.models.Product;
@@ -37,8 +36,8 @@ public class BuyByIdAction implements Action {
 	}
 
 	@Override
-	public Optional<String> getError() {
-		return this.error != "" ? Optional.of(this.error) : Optional.empty();
+	public String getError() {
+		return this.error;
 	}
 
 	@Override

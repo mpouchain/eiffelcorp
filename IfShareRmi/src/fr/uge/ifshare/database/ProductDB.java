@@ -1,6 +1,7 @@
 package fr.uge.ifshare.database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ProductDB {
 		if (!productMap.containsKey(product)) {
 			productMap.put(product, new ArrayList<Long>());
 		}
-		this.productMap.merge(product, List.of(idCount), (list, elem) -> {
+		this.productMap.merge(product, Arrays.asList(idCount), (list, elem) -> {
 			list.addAll(elem);
 			return list;
 		});
@@ -37,7 +38,7 @@ public class ProductDB {
 
 	public boolean deleteProduct(Product product, long id) {
 		if (this.containsProduct(product)) {
-			this.productMap.merge(product, List.of(id), (list, elem) -> {
+			this.productMap.merge(product, Arrays.asList(id), (list, elem) -> {
 				list.removeAll(elem);
 				return list;
 			});

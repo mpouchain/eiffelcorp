@@ -1,6 +1,7 @@
 package fr.uge.ifshare.database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class RatingsDB {
 		if(!this.gradeDB.containsKey(type)) {
 			this.gradeDB.put(type, new ArrayList<Integer>());
 		}
-		this.gradeDB.merge(type, List.of(grade), (list, val) -> {
+		this.gradeDB.merge(type, Arrays.asList(grade), (list, val) -> {
 			list.addAll(val);
 			return list;
 		});
