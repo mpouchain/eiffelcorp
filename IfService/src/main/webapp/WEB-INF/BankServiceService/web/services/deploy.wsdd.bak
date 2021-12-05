@@ -23,21 +23,24 @@
       <operation name="description" qname="operNS:description" xmlns:operNS="http://services.web" returnQName="retNS:descriptionReturn" xmlns:retNS="http://services.web" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
       <operation name="hasFunds" qname="operNS:hasFunds" xmlns:operNS="http://services.web" returnQName="retNS:hasFundsReturn" xmlns:retNS="http://services.web" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
+        <parameter qname="pns:id" xmlns:pns="http://services.web" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:value" xmlns:pns="http://services.web" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="removeFunds" qname="operNS:removeFunds" xmlns:operNS="http://services.web" soapAction="" >
-        <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
+        <parameter qname="pns:id" xmlns:pns="http://services.web" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:value" xmlns:pns="http://services.web" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
+      <operation name="getClientById" qname="operNS:getClientById" xmlns:operNS="http://services.web" returnQName="retNS:getClientByIdReturn" xmlns:retNS="http://services.web" returnType="rtns:BankClient" xmlns:rtns="http://models.web" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://services.web" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="addClient" qname="operNS:addClient" xmlns:operNS="http://services.web" soapAction="" >
-        <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
+        <parameter qname="pns:id" xmlns:pns="http://services.web" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:value" xmlns:pns="http://services.web" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="getFunds" qname="operNS:getFunds" xmlns:operNS="http://services.web" returnQName="retNS:getFundsReturn" xmlns:retNS="http://services.web" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:bc" xmlns:pns="http://services.web" type="tns:BankClient" xmlns:tns="http://models.web"/>
       </operation>
-      <parameter name="allowedMethods" value="hasFunds addClient description getFunds removeFunds"/>
+      <parameter name="allowedMethods" value="hasFunds addClient description getFunds removeFunds getClientById"/>
 
       <typeMapping
         xmlns:ns="http://models.web"

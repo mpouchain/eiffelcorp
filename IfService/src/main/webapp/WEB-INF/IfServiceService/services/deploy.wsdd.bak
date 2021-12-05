@@ -22,12 +22,16 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation name="description" qname="operNS:description" xmlns:operNS="http://services" returnQName="retNS:descriptionReturn" xmlns:retNS="http://services" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
-      <operation name="getPrice" qname="operNS:getPrice" xmlns:operNS="http://services" returnQName="retNS:getPriceReturn" xmlns:retNS="http://services" returnType="rtns:long" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="getAvailableProducts" qname="operNS:getAvailableProducts" xmlns:operNS="http://services" returnQName="retNS:getAvailableProductsReturn" xmlns:retNS="http://services" returnType="rtns:Product" xmlns:rtns="http://models" soapAction="" >
+      </operation>
+      <operation name="validateCart" qname="operNS:validateCart" xmlns:operNS="http://services" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://services" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addToCart" qname="operNS:addToCart" xmlns:operNS="http://services" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://services" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:p" xmlns:pns="http://services" type="tns:Product" xmlns:tns="http://models"/>
       </operation>
-      <operation name="getProducts" qname="operNS:getProducts" xmlns:operNS="http://services" returnQName="retNS:getProductsReturn" xmlns:retNS="http://services" returnType="rtns:Product" xmlns:rtns="http://models" soapAction="" >
-      </operation>
-      <parameter name="allowedMethods" value="description getProducts getPrice"/>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
 
       <typeMapping
         xmlns:ns="http://models"

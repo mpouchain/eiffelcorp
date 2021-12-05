@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://services.web" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.web" xmlns:intf="http://services.web" xmlns:tns1="http://models.web" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://web.ifservice.corp.uge.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://web.ifservice.corp.uge.fr" xmlns:intf="http://web.ifservice.corp.uge.fr" xmlns:tns1="http://common.ifservice.corp.uge.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
-  <schema elementFormDefault="qualified" targetNamespace="http://services.web" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://models.web"/>
+  <schema elementFormDefault="qualified" targetNamespace="http://web.ifservice.corp.uge.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://common.ifservice.corp.uge.fr"/>
    <element name="description">
     <complexType/>
    </element>
@@ -28,22 +28,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="validateCart">
     <complexType>
      <sequence>
-      <element name="bc" type="tns1:BankClient"/>
+      <element name="id" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns1_Product">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
-    </sequence>
-   </complexType>
    <element name="validateCartResponse">
     <complexType/>
    </element>
    <element name="addToCart">
     <complexType>
      <sequence>
-      <element name="bc" type="tns1:BankClient"/>
+      <element name="id" type="xsd:int"/>
       <element name="p" type="tns1:Product"/>
      </sequence>
     </complexType>
@@ -52,8 +47,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType/>
    </element>
   </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://models.web" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://services.web"/>
+  <schema elementFormDefault="qualified" targetNamespace="http://common.ifservice.corp.uge.fr" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="Rating">
     <sequence>
      <element name="note" type="xsd:int"/>
@@ -66,12 +60,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="price" type="xsd:double"/>
      <element name="rating" nillable="true" type="tns1:Rating"/>
      <element name="type" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
-   <complexType name="BankClient">
-    <sequence>
-     <element name="cart" nillable="true" type="impl:ArrayOf_tns1_Product"/>
-     <element name="id" type="xsd:int"/>
     </sequence>
    </complexType>
   </schema>

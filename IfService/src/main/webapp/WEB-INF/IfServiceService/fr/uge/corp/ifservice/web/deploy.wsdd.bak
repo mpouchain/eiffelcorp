@@ -1,0 +1,53 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IfServiceService WSDL service -->
+
+  <service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://web.ifservice.corp.uge.fr"/>
+      <parameter name="wsdlServiceElement" value="IfServiceService"/>
+      <parameter name="schemaQualified" value="http://common.ifservice.corp.uge.fr,http://web.ifservice.corp.uge.fr"/>
+      <parameter name="wsdlServicePort" value="IfService"/>
+      <parameter name="className" value="fr.uge.corp.ifservice.web.IfServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="IfService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="description" qname="operNS:description" xmlns:operNS="http://web.ifservice.corp.uge.fr" returnQName="retNS:descriptionReturn" xmlns:retNS="http://web.ifservice.corp.uge.fr" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getAvailableProducts" qname="operNS:getAvailableProducts" xmlns:operNS="http://web.ifservice.corp.uge.fr" returnQName="retNS:getAvailableProductsReturn" xmlns:retNS="http://web.ifservice.corp.uge.fr" returnType="rtns:Product" xmlns:rtns="http://common.ifservice.corp.uge.fr" soapAction="" >
+      </operation>
+      <operation name="validateCart" qname="operNS:validateCart" xmlns:operNS="http://web.ifservice.corp.uge.fr" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addToCart" qname="operNS:addToCart" xmlns:operNS="http://web.ifservice.corp.uge.fr" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:p" xmlns:pns="http://web.ifservice.corp.uge.fr" type="tns:Product" xmlns:tns="http://common.ifservice.corp.uge.fr"/>
+      </operation>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
+
+      <typeMapping
+        xmlns:ns="http://common.ifservice.corp.uge.fr"
+        qname="ns:Product"
+        type="java:fr.uge.corp.ifservice.common.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://common.ifservice.corp.uge.fr"
+        qname="ns:Rating"
+        type="java:fr.uge.corp.ifservice.common.Rating"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,68 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IfServiceService WSDL service -->
+
+  <service name="IfService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serv"/>
+      <parameter name="wsdlServiceElement" value="IfServiceService"/>
+      <parameter name="schemaQualified" value="http://dao,http://serv"/>
+      <parameter name="wsdlServicePort" value="IfService"/>
+      <parameter name="className" value="serv.IfServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="IfService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="description" qname="operNS:description" xmlns:operNS="http://serv" returnQName="retNS:descriptionReturn" xmlns:retNS="http://serv" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getAvailableProducts" qname="operNS:getAvailableProducts" xmlns:operNS="http://serv" returnQName="retNS:getAvailableProductsReturn" xmlns:retNS="http://serv" returnType="rtns:Product" xmlns:rtns="http://dao" soapAction="" >
+      </operation>
+      <operation name="validateCart" qname="operNS:validateCart" xmlns:operNS="http://serv" soapAction="" >
+        <parameter qname="pns:bc" xmlns:pns="http://serv" type="tns:BankClient" xmlns:tns="http://dao"/>
+      </operation>
+      <operation name="addToCart" qname="operNS:addToCart" xmlns:operNS="http://serv" soapAction="" >
+        <parameter qname="pns:bc" xmlns:pns="http://serv" type="tns:BankClient" xmlns:tns="http://dao"/>
+        <parameter qname="pns:p" xmlns:pns="http://serv" type="tns:Product" xmlns:tns="http://dao"/>
+      </operation>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
+
+      <arrayMapping
+        xmlns:ns="http://serv"
+        qname="ns:ArrayOf_tns1_Product"
+        type="java:dao.Product[]"
+        innerType="cmp-ns:Product" xmlns:cmp-ns="http://dao"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:Rating"
+        type="java:dao.Rating"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:Product"
+        type="java:dao.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:BankClient"
+        type="java:dao.BankClient"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

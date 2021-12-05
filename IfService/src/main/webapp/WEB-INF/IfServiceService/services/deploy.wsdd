@@ -12,12 +12,16 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="description" qname="operNS:description" returnQName="retNS:descriptionReturn" returnType="rtns:string" soapAction="">
       </operation>
-      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPrice" qname="operNS:getPrice" returnQName="retNS:getPriceReturn" returnType="rtns:long" soapAction="">
+      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://models" name="getAvailableProducts" qname="operNS:getAvailableProducts" returnQName="retNS:getAvailableProductsReturn" returnType="rtns:Product" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://services" name="validateCart" qname="operNS:validateCart" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://services" name="addToCart" qname="operNS:addToCart" soapAction="">
+        <parameter xmlns:pns="http://services" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
         <parameter xmlns:pns="http://services" xmlns:tns="http://models" qname="pns:p" type="tns:Product"/>
       </operation>
-      <operation xmlns:operNS="http://services" xmlns:retNS="http://services" xmlns:rtns="http://models" name="getProducts" qname="operNS:getProducts" returnQName="retNS:getProductsReturn" returnType="rtns:Product" soapAction="">
-      </operation>
-      <parameter name="allowedMethods" value="description getProducts getPrice"/>
+      <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart"/>
 
       <typeMapping xmlns:ns="http://models" qname="ns:Product" type="java:models.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://models" qname="ns:Rating" type="java:models.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>

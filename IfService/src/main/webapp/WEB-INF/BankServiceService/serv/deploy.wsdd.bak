@@ -1,0 +1,77 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BankServiceService WSDL service -->
+
+  <service name="BankService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serv"/>
+      <parameter name="wsdlServiceElement" value="BankServiceService"/>
+      <parameter name="schemaQualified" value="http://dao,http://serv"/>
+      <parameter name="wsdlServicePort" value="BankService"/>
+      <parameter name="className" value="serv.BankServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="BankService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="description" qname="operNS:description" xmlns:operNS="http://serv" returnQName="retNS:descriptionReturn" xmlns:retNS="http://serv" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="hasFunds" qname="operNS:hasFunds" xmlns:operNS="http://serv" returnQName="retNS:hasFundsReturn" xmlns:retNS="http://serv" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://serv" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:value" xmlns:pns="http://serv" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeFunds" qname="operNS:removeFunds" xmlns:operNS="http://serv" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://serv" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:value" xmlns:pns="http://serv" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getClientById" qname="operNS:getClientById" xmlns:operNS="http://serv" returnQName="retNS:getClientByIdReturn" xmlns:retNS="http://serv" returnType="rtns:BankClient" xmlns:rtns="http://dao" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://serv" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addClient" qname="operNS:addClient" xmlns:operNS="http://serv" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://serv" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:value" xmlns:pns="http://serv" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getFunds" qname="operNS:getFunds" xmlns:operNS="http://serv" returnQName="retNS:getFundsReturn" xmlns:retNS="http://serv" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:bc" xmlns:pns="http://serv" type="tns:BankClient" xmlns:tns="http://dao"/>
+      </operation>
+      <parameter name="allowedMethods" value="hasFunds addClient description getFunds removeFunds getClientById"/>
+
+      <arrayMapping
+        xmlns:ns="http://serv"
+        qname="ns:ArrayOf_tns1_Product"
+        type="java:dao.Product[]"
+        innerType="cmp-ns:Product" xmlns:cmp-ns="http://dao"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:Rating"
+        type="java:dao.Rating"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:Product"
+        type="java:dao.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao"
+        qname="ns:BankClient"
+        type="java:dao.BankClient"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
