@@ -6,27 +6,30 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.xml.rpc.ServiceException;
 
 import fr.uge.corp.bank.web.BankService;
 import fr.uge.corp.bank.web.BankServiceServiceLocator;
+import fr.uge.corp.bank.web.BankServiceSoapBindingStub;
 import fr.uge.corp.ifservice.common.Product;
 import fr.uge.corp.ifservice.common.Rating;
 
 
 public class IfService {
-	private final List<Product> availableProducts;
-	private final HashMap<Integer, Cart> carts = new HashMap<Integer, Cart>();
+	private final List<Product> availableProducts = Arrays.asList(new Product("Chaise rouge", 40, new Rating(5, 1)), new Product("Table bleu", 200, new Rating(5, 2)), new Product("Pull en laine", 35, new Rating(4, 3)));
+	private final HashMap<Integer, Cart> carts = new HashMap<Integer, Cart>() {{
+											        put(1, new Cart());
+											        put(2, new Cart());
+											        put(3, new Cart());
+											    }};
 	private BankService bankService;
 	//private final CurrencyServerSoap currencyServer;
 	
 	public IfService() throws ServiceException, MalformedURLException, RemoteException, NotBoundException {
-		this.availableProducts = Arrays.asList(new Product("Chaise rouge", 40, new Rating(5, 1)), new Product("Table bleu", 200, new Rating(5, 2)), new Product("Pull en laine", 35, new Rating(4, 3)));
 		this.bankService = new BankServiceServiceLocator().getBankService();
-		carts.put(1, new Cart());
-		carts.put(2, new Cart());
-		carts.put(3, new Cart());
+		((BankServiceSoapBindingStub)bankService).setMaintainSession(true);
 		//this.currencyServer = new CurrencyServerLocator().getCurrencyServerSoap();
 	}
 	
@@ -77,6 +80,11 @@ public class IfService {
 		sb.append("Products available : \n");
 		for(Product p : availableProducts) {
 			sb.append(p).append("\n");
+		}
+		sb.append("Carts : \n");
+		for(Entry<Integer, Cart> e : carts.entrySet()) {
+			sb.append("Cart " + e.getKey() + " with content " + e.getValue().getCartDescription())
+				.append("\n");
 		}
 		return sb.toString();			
 	}

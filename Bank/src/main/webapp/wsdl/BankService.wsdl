@@ -15,6 +15,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="removeFunds">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="value" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeFundsResponse">
+    <complexType/>
+   </element>
    <element name="hasFunds">
     <complexType>
      <sequence>
@@ -30,7 +41,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="removeFunds">
+   <element name="getFunds">
+    <complexType>
+     <sequence>
+      <element name="bc" type="tns1:BankClient"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFundsResponse">
+    <complexType>
+     <sequence>
+      <element name="getFundsReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addClient">
     <complexType>
      <sequence>
       <element name="id" type="xsd:int"/>
@@ -38,7 +63,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="removeFundsResponse">
+   <element name="addClientResponse">
     <complexType/>
    </element>
    <element name="getClientById">
@@ -55,56 +80,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns1_Product">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Product"/>
-    </sequence>
-   </complexType>
-   <element name="addClient">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-      <element name="value" type="xsd:double"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addClientResponse">
-    <complexType/>
-   </element>
-   <element name="getFunds">
-    <complexType>
-     <sequence>
-      <element name="bc" type="tns1:BankClient"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getFundsResponse">
-    <complexType>
-     <sequence>
-      <element name="getFundsReturn" type="xsd:double"/>
-     </sequence>
-    </complexType>
-   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://common.bank.corp.uge.fr" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://web.bank.corp.uge.fr"/>
-   <complexType name="Rating">
-    <sequence>
-     <element name="note" type="xsd:int"/>
-     <element name="state" type="xsd:int"/>
-    </sequence>
-   </complexType>
-   <complexType name="Product">
-    <sequence>
-     <element name="id" type="xsd:long"/>
-     <element name="price" type="xsd:double"/>
-     <element name="rating" nillable="true" type="tns1:Rating"/>
-     <element name="type" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
    <complexType name="BankClient">
     <sequence>
-     <element name="cart" nillable="true" type="impl:ArrayOf_tns1_Product"/>
      <element name="id" type="xsd:int"/>
     </sequence>
    </complexType>
@@ -135,17 +114,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getClientByIdResponse">
+   <wsdl:message name="getFundsResponse">
 
-      <wsdl:part element="impl:getClientByIdResponse" name="parameters">
+      <wsdl:part element="impl:getFundsResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getFundsResponse">
+   <wsdl:message name="getClientByIdResponse">
 
-      <wsdl:part element="impl:getFundsResponse" name="parameters">
+      <wsdl:part element="impl:getClientByIdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -167,17 +146,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getClientByIdRequest">
+   <wsdl:message name="addClientRequest">
 
-      <wsdl:part element="impl:getClientById" name="parameters">
+      <wsdl:part element="impl:addClient" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addClientRequest">
+   <wsdl:message name="getClientByIdRequest">
 
-      <wsdl:part element="impl:addClient" name="parameters">
+      <wsdl:part element="impl:getClientById" name="parameters">
 
       </wsdl:part>
 
@@ -221,18 +200,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="hasFunds">
-
-         <wsdl:input message="impl:hasFundsRequest" name="hasFundsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:hasFundsResponse" name="hasFundsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="removeFunds">
 
          <wsdl:input message="impl:removeFundsRequest" name="removeFundsRequest">
@@ -245,13 +212,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getClientById">
+      <wsdl:operation name="hasFunds">
 
-         <wsdl:input message="impl:getClientByIdRequest" name="getClientByIdRequest">
+         <wsdl:input message="impl:hasFundsRequest" name="hasFundsRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getClientByIdResponse" name="getClientByIdResponse">
+         <wsdl:output message="impl:hasFundsResponse" name="hasFundsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFunds">
+
+         <wsdl:input message="impl:getFundsRequest" name="getFundsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFundsResponse" name="getFundsResponse">
 
        </wsdl:output>
 
@@ -269,13 +248,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getFunds">
+      <wsdl:operation name="getClientById">
 
-         <wsdl:input message="impl:getFundsRequest" name="getFundsRequest">
+         <wsdl:input message="impl:getClientByIdRequest" name="getClientByIdRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getFundsResponse" name="getFundsResponse">
+         <wsdl:output message="impl:getClientByIdResponse" name="getClientByIdResponse">
 
        </wsdl:output>
 
@@ -305,24 +284,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="hasFunds">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="hasFundsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="hasFundsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="removeFunds">
 
          <wsdlsoap:operation soapAction=""/>
@@ -341,17 +302,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getClientById">
+      <wsdl:operation name="hasFunds">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getClientByIdRequest">
+         <wsdl:input name="hasFundsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getClientByIdResponse">
+         <wsdl:output name="hasFundsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFunds">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFundsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFundsResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -377,17 +356,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getFunds">
+      <wsdl:operation name="getClientById">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getFundsRequest">
+         <wsdl:input name="getClientByIdRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getFundsResponse">
+         <wsdl:output name="getClientByIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -33,18 +33,18 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="IfService" provider="java:RPC" style="wrapped" use="literal">
- 	<ns1:parameter name="scope" value="session"/>
+ <ns1:parameter name="scope" value="session"/>
   <ns2:operation name="description" qname="ns1:description" returnQName="ns1:descriptionReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://web.ifservice.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
   <ns1:operation name="getAvailableProducts" qname="ns2:getAvailableProducts" returnQName="ns2:getAvailableProductsReturn" returnType="ns3:Product" soapAction="" xmlns:ns2="http://web.ifservice.corp.uge.fr" xmlns:ns3="http://common.ifservice.corp.uge.fr"/>
-  <ns1:operation name="validateCart" qname="ns4:validateCart" soapAction="" xmlns:ns4="http://web.ifservice.corp.uge.fr">
+  <ns1:operation name="getCartById" qname="ns4:getCartById" returnQName="ns4:getCartByIdReturn" returnType="ns4:Cart" soapAction="" xmlns:ns4="http://web.ifservice.corp.uge.fr">
    <ns1:parameter qname="ns4:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="addToCart" qname="ns5:addToCart" soapAction="" xmlns:ns5="http://web.ifservice.corp.uge.fr">
+  <ns1:operation name="validateCart" qname="ns5:validateCart" soapAction="" xmlns:ns5="http://web.ifservice.corp.uge.fr">
    <ns1:parameter qname="ns5:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:p" type="ns6:Product" xmlns:ns6="http://common.ifservice.corp.uge.fr"/>
   </ns1:operation>
-  <ns1:operation name="getCartById" qname="ns7:getCartById" returnQName="ns7:getCartByIdReturn" returnType="ns7:Cart" soapAction="" xmlns:ns7="http://web.ifservice.corp.uge.fr">
-   <ns1:parameter qname="ns7:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addToCart" qname="ns6:addToCart" soapAction="" xmlns:ns6="http://web.ifservice.corp.uge.fr">
+   <ns1:parameter qname="ns6:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns6:p" type="ns7:Product" xmlns:ns7="http://common.ifservice.corp.uge.fr"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart getCartById"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>

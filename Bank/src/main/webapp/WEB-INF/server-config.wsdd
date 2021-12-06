@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -23,25 +23,24 @@
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:service name="BankService" provider="java:RPC" style="wrapped" use="literal">
- 	<ns1:parameter name="scope" value="session"/>
   <ns2:operation name="description" qname="ns1:description" returnQName="ns1:descriptionReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
-  <ns1:operation name="hasFunds" qname="ns2:hasFunds" returnQName="ns2:hasFundsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:id" type="xsd:int"/>
-   <ns1:parameter qname="ns2:value" type="xsd:double"/>
+  <ns1:operation name="removeFunds" qname="ns2:removeFunds" soapAction="" xmlns:ns2="http://web.bank.corp.uge.fr">
+   <ns1:parameter qname="ns2:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:value" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="removeFunds" qname="ns3:removeFunds" soapAction="" xmlns:ns3="http://web.bank.corp.uge.fr">
-   <ns1:parameter qname="ns3:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns3:value" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="hasFunds" qname="ns3:hasFunds" returnQName="ns3:hasFundsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:id" type="xsd:int"/>
+   <ns1:parameter qname="ns3:value" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="getClientById" qname="ns4:getClientById" returnQName="ns4:getClientByIdReturn" returnType="ns5:BankClient" soapAction="" xmlns:ns4="http://web.bank.corp.uge.fr" xmlns:ns5="http://common.bank.corp.uge.fr">
-   <ns1:parameter qname="ns4:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getFunds" qname="ns4:getFunds" returnQName="ns4:getFundsReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:bc" type="ns5:BankClient" xmlns:ns5="http://common.bank.corp.uge.fr"/>
   </ns1:operation>
   <ns1:operation name="addClient" qname="ns6:addClient" soapAction="" xmlns:ns6="http://web.bank.corp.uge.fr">
    <ns1:parameter qname="ns6:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
    <ns1:parameter qname="ns6:value" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getFunds" qname="ns7:getFunds" returnQName="ns7:getFundsReturn" returnType="xsd:double" soapAction="" xmlns:ns7="http://web.bank.corp.uge.fr" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns7:bc" type="ns8:BankClient" xmlns:ns8="http://common.bank.corp.uge.fr"/>
+  <ns1:operation name="getClientById" qname="ns7:getClientById" returnQName="ns7:getClientByIdReturn" returnType="ns8:BankClient" soapAction="" xmlns:ns7="http://web.bank.corp.uge.fr" xmlns:ns8="http://common.bank.corp.uge.fr">
+   <ns1:parameter qname="ns7:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="hasFunds addClient description getFunds removeFunds getClientById"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
@@ -52,9 +51,6 @@
   <ns1:parameter name="wsdlTargetNamespace" value="http://web.bank.corp.uge.fr"/>
   <ns1:parameter name="wsdlServiceElement" value="BankServiceService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.bank.common.BankClient" xmlns:ns9="http://common.bank.corp.uge.fr"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.bank.common.Product" xmlns:ns10="http://common.bank.corp.uge.fr"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.corp.bank.common.Rating" xmlns:ns11="http://common.bank.corp.uge.fr"/>
-  <ns1:arrayMapping innerType="ns13:Product" languageSpecificType="java:fr.uge.corp.bank.common.Product[]" qname="ns12:ArrayOf_tns1_Product" xmlns:ns12="http://web.bank.corp.uge.fr" xmlns:ns13="http://common.bank.corp.uge.fr"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>

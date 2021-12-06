@@ -14,15 +14,15 @@
       </operation>
       <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" xmlns:retNS="http://web.ifservice.corp.uge.fr" xmlns:rtns="http://common.ifservice.corp.uge.fr" name="getAvailableProducts" qname="operNS:getAvailableProducts" returnQName="retNS:getAvailableProductsReturn" returnType="rtns:Product" soapAction="">
       </operation>
+      <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" xmlns:retNS="http://web.ifservice.corp.uge.fr" xmlns:rtns="http://web.ifservice.corp.uge.fr" name="getCartById" qname="operNS:getCartById" returnQName="retNS:getCartByIdReturn" returnType="rtns:Cart" soapAction="">
+        <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
       <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" name="validateCart" qname="operNS:validateCart" soapAction="">
         <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
       </operation>
       <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" name="addToCart" qname="operNS:addToCart" soapAction="">
         <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
         <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://common.ifservice.corp.uge.fr" qname="pns:p" type="tns:Product"/>
-      </operation>
-      <operation xmlns:operNS="http://web.ifservice.corp.uge.fr" xmlns:retNS="http://web.ifservice.corp.uge.fr" xmlns:rtns="http://web.ifservice.corp.uge.fr" name="getCartById" qname="operNS:getCartById" returnQName="retNS:getCartByIdReturn" returnType="rtns:Cart" soapAction="">
-        <parameter xmlns:pns="http://web.ifservice.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
       </operation>
       <parameter name="allowedMethods" value="description addToCart getAvailableProducts validateCart getCartById"/>
 

@@ -12,29 +12,26 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="description" qname="operNS:description" returnQName="retNS:descriptionReturn" returnType="rtns:string" soapAction="">
       </operation>
-      <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="hasFunds" qname="operNS:hasFunds" returnQName="retNS:hasFundsReturn" returnType="rtns:boolean" soapAction="">
-        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
-        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
-      </operation>
       <operation xmlns:operNS="http://web.bank.corp.uge.fr" name="removeFunds" qname="operNS:removeFunds" soapAction="">
         <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
         <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
       </operation>
-      <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://common.bank.corp.uge.fr" name="getClientById" qname="operNS:getClientById" returnQName="retNS:getClientByIdReturn" returnType="rtns:BankClient" soapAction="">
-        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
-      </operation>
-      <operation xmlns:operNS="http://web.bank.corp.uge.fr" name="addClient" qname="operNS:addClient" soapAction="">
+      <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="hasFunds" qname="operNS:hasFunds" returnQName="retNS:hasFundsReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
         <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
       </operation>
       <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getFunds" qname="operNS:getFunds" returnQName="retNS:getFundsReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://common.bank.corp.uge.fr" qname="pns:bc" type="tns:BankClient"/>
       </operation>
+      <operation xmlns:operNS="http://web.bank.corp.uge.fr" name="addClient" qname="operNS:addClient" soapAction="">
+        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://web.bank.corp.uge.fr" xmlns:retNS="http://web.bank.corp.uge.fr" xmlns:rtns="http://common.bank.corp.uge.fr" name="getClientById" qname="operNS:getClientById" returnQName="retNS:getClientByIdReturn" returnType="rtns:BankClient" soapAction="">
+        <parameter xmlns:pns="http://web.bank.corp.uge.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
       <parameter name="allowedMethods" value="hasFunds addClient description getFunds removeFunds getClientById"/>
 
       <typeMapping xmlns:ns="http://common.bank.corp.uge.fr" qname="ns:BankClient" type="java:fr.uge.corp.bank.common.BankClient" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
-      <typeMapping xmlns:ns="http://common.bank.corp.uge.fr" qname="ns:Product" type="java:fr.uge.corp.bank.common.Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
-      <arrayMapping xmlns:ns="http://web.bank.corp.uge.fr" xmlns:cmp-ns="http://common.bank.corp.uge.fr" qname="ns:ArrayOf_tns1_Product" type="java:fr.uge.corp.bank.common.Product[]" innerType="cmp-ns:Product" encodingStyle=""/>
-      <typeMapping xmlns:ns="http://common.bank.corp.uge.fr" qname="ns:Rating" type="java:fr.uge.corp.bank.common.Rating" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>

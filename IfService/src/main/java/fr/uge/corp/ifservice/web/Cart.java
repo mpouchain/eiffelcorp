@@ -6,9 +6,14 @@ import java.util.List;
 import fr.uge.corp.ifservice.common.Product;
 
 public class Cart {
-	private List<Product> cart = new ArrayList<>();
+	private List<Product> cart;
+	
+	public Cart() {
+		this.cart = new ArrayList<>();
+	}
 	
 	public void addToCart(Product p) {
+		System.out.println("Product " + p + " added to cart.");
 		cart.add(p);
 	}
 	

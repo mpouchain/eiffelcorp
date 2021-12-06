@@ -11,9 +11,11 @@ import fr.uge.corp.ifservice.web.IfServiceSoapBindingStub;
 
 public class IfServiceBuyer {
 		
-	public static void main(String[] args) throws ServiceException, RemoteException {
+	public static void main(String[] args) throws ServiceException, RemoteException, InterruptedException {
 		IfService ifService = new IfServiceServiceLocator().getIfService();
 		((IfServiceSoapBindingStub)ifService).setMaintainSession(true);
+		
+		
 
 		
 		System.out.println(ifService.description());
@@ -28,25 +30,6 @@ public class IfServiceBuyer {
 		
 		System.out.println("Product : " + p);
 		System.out.println("Client 2 cart :");
-		System.out.println(ifService.getCartById(1).getCartDescription());
 		System.out.println(ifService.getCartById(2).getCartDescription());
-		System.out.println(ifService.getCartById(3).getCartDescription());
-
-		/*
-		System.out.println(bankService.getClientById(2).getCart());
-		
-		
-		/*
-		Product p = ifService.getAvailableProducts()[0];
-		
-		System.out.println("Product p : " + p);
-		if(bankService.hasFunds(0, p.getPrice())) {
-			System.out.println("Client 0 can buy product " + p.getType());
-		} else {
-			System.out.println("Client 0 cannot buy product " + p.getType());
-		}
-		System.out.println(bankService.description());
-		System.out.println(ifServiceservice.description());
-		*/
 	}
 }
