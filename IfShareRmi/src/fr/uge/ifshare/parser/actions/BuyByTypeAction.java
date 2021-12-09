@@ -11,7 +11,7 @@ import fr.uge.ifshare.service.IIfShareService;
 public class BuyByTypeAction implements Action {
 	private String type;
 	private String error = "";
-	
+
 	public static String usage() {
 		return "Usage : @buytype [type] [du] [produit]";
 	}
@@ -44,21 +44,16 @@ public class BuyByTypeAction implements Action {
 	public void executeAction(IIfShareService ifShareService, IfShareClient client, long idClient)
 			throws RemoteException {
 		double price = ifShareService.getPrice(this.type);
-		if (price == -1) {
-			System.out.println("Le produit : " + this.type + " n'est plus disponible");
-			System.out.println("Vous êtes inscrit sur liste d'attente");
+		if (client.getBank() < price) {
+			System.out.println("Vous n'avez plus assez d'argent dans votre banque pour acheter ce produit.");
 		} else {
-			if (client.getBank() < price) {
-				System.out.println("Vous n'avez plus assez d'argent dans votre banque pour acheter ce produit.");
+			Product product = ifShareService.buyProductByType(this.type, idClient);
+			if (product == null) {
+				System.out.println("Le produit : " + this.type + " n'est plus disponible");
+				System.out.println("Vous êtes inscrit sur liste d'attente");
 			} else {
-				Product product = ifShareService.buyProductByType(this.type, idClient);
-				if (product == null) {
-					System.out.println("Le produit : " + this.type + " n'est plus disponible");
-					System.out.println("Vous êtes inscrit sur liste d'attente");
-				} else {
-					System.out.println("Vous avez acheté le produit " + product);
-					client.removeFromBank(product.getPrice());
-				}
+				System.out.println("Vous avez acheté le produit " + product);
+				client.removeFromBank(product.getPrice());
 			}
 		}
 	}

@@ -41,6 +41,7 @@ public class ClientWaitListDB {
 	}
 	
 	public List<Long> getClientWaitingForProduct(String productType) {
+		this.waitListMap.entrySet().forEach(entry -> System.out.println(entry.getKey()));
 		if(this.waitListMap.containsKey(productType)) {
 			return this.waitListMap.get(productType);
 		} else {

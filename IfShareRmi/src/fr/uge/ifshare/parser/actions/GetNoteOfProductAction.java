@@ -17,7 +17,7 @@ public class GetNoteOfProductAction implements Action {
 	}
 	
 	public boolean count(String[] command) {
-		return command.length == 2;
+		return command.length >= 2;
 	}
 
 	@Override

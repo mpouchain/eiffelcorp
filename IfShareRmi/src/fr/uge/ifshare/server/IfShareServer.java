@@ -17,8 +17,6 @@ import fr.uge.ifshare.service.IfShareService;
 
 public class IfShareServer {
 	
-	
-	
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		IIfShareService ifShareService = new IfShareService();
 		IIfShareClient ifShareClient1 = new IfShareClient();
